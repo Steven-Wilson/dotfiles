@@ -1,0 +1,34 @@
+[
+
+    // Fix what should have been defaults
+    { "keys": ["insert"], "command": "paste" },
+    { "keys": ["ctrl+y"], "command": "redo" },
+
+    // SAS Plugin Commands
+
+    { "keys": ["f1"], "command": "drage_select_callback"},
+    { "keys": ["f5"], "command": "run_all" , "context": [{ "key": "selector", "operator": "equal", "operand": "source.sas" }, ]},
+    { "keys": ["f8"], "command": "run_selection" , "context": [{ "key": "selector", "operator": "equal", "operand": "source.sas" }, ]},
+
+    { "keys": ["f1"], "command": "revert"},
+
+    { "keys": ["alt+shift+up"], "command": "new_pane" },
+    { "keys": ["alt+shift+down"], "command": "close_pane" },
+    { "keys": ["alt+shift+left"], "command": "focus_neighboring_group", "args": {"forward": false} },
+    { "keys": ["alt+shift+right"], "command": "focus_neighboring_group" },
+
+    { "keys": ["f1"], "command": "example"},
+    {
+      "keys": ["ctrl+shift+b"],
+      "command": "export_html",
+      "args": {
+          "numbers": false,
+          "browser_print": false,
+          "multi_select": true,
+          "clipboard_copy": true,
+          "no_header": true,
+          // "color_scheme": "Packages/ExportHtml/ColorSchemes/Print-Color.tmTheme",
+          "style_gutter": false
+      }
+    }
+]
