@@ -1,13 +1,23 @@
-
-execute pathogen#infect()
-
 set nocompatible
+filetype off
 
-syntax on
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'gmarik/Vundle.vim'
+Plugin 'tomasr/molokai'
+Plugin 'fatih/vim-go'
+Plugin 'kien/ctrlp.vim'
+Plugin 'bling/vim-airline'
+
+call vundle#end()
 filetype plugin indent on
 
+syntax on
+
+set term=xterm-256color
 set background=dark
-colorscheme wombat
+colorscheme molokai
 
 set laststatus=2
 set showcmd
@@ -39,9 +49,9 @@ set list listchars=tab:\ \ ,trail:~
 set nf=octal,hex,alpha
 
 set expandtab
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
 set smarttab
 set smartindent
 set autoindent
@@ -80,32 +90,29 @@ set title
 nno <C-Tab> :bn<CR>
 nnoremap <C-a> ggVG
 
-
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_match_window = 'bottom,order:ttb'
 let g:ctrlp_switch_buffer = 0
 let g:ctrlp_working_path = 0
-let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'
-
+"
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/]\.(git|hg|svn)$',
   \ 'file': '\v\.(exe|so|dll)$',
   \ 'link': 'some_bad_symbolic_links',
   \ }
 
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_camel_case = 1
-let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#enable_fuzzy_completion = 1
-inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+"let g:neocomplete#enable_at_startup = 1
+"let g:neocomplete#enable_camel_case = 1
+"let g:neocomplete#enable_smart_case = 1
+"let g:neocomplete#enable_fuzzy_completion = 1
+"inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 
-let g:gundo_right = 1
-let g:gundo_preview_height = 15
-let g:gundo_help = 0
-nnoremap <F5> :GundoToggle<CR>
+"let g:gundo_right = 1
+"let g:gundo_preview_height = 15
+"let g:gundo_help = 0
+"nnoremap <F5> :GundoToggle<CR>
 
 let g:airline#extensions#tabline#enabled=1
-set colorcolumn=0
-set ff=unix
 
-cd c:\svn\
+let g:go_fmt_command = "goimports"
+set ff=unix
