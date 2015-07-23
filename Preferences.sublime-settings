@@ -24,12 +24,11 @@
 	"caret_extra_top": 1,
 	"caret_extra_width": 1,
 	"caret_style": "solid",
-	"color_scheme": "Packages/User/mine.tmTheme",
+	"color_scheme": "Packages/Theme - Flatland/Flatland Dark.tmTheme",
 	"copy_with_empty_selection": false,
 	"drag_text": false,
 	"draw_minimap_border": true,
 	"ensure_newline_at_eof_on_save": true,
-  	"trim_trailing_white_space_on_save": true,
 	"fade_fold_buttons": false,
 	"file_exclude_patterns":
 	[
@@ -58,7 +57,7 @@
 		"*.xl*",
 		"*.7z"
 	],
-	"font_face": "Consolas",
+	"font_face": "consolas",
 	"font_options":
 	[
 		"subpixel_antialias"
@@ -69,7 +68,7 @@
 	[
 		"Vintage"
 	],
-	"indent_to_bracket": true,
+	"indent_to_bracket": false,
 	"index_exclude_patterns":
 	[
 		"*.log",
@@ -80,9 +79,11 @@
 	"shift_tab_unindent": true,
 	"show_encoding": true,
 	"show_line_endings": true,
+	"show_panel_on_build": true,
 	"tab_size": 2,
-	"theme": "Nil.sublime-theme",
+	"theme": "Flatland Dark.sublime-theme",
 	"translate_tabs_to_spaces": true,
+	"trim_trailing_white_space_on_save": true,
 	"vintageous_reset_mode_when_switching_tabs": false,
 	"vintageous_use_sys_clipboard": true,
 	"word_wrap": true,
