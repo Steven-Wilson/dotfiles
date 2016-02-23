@@ -23,8 +23,8 @@
 	"caret_extra_bottom": 1,
 	"caret_extra_top": 1,
 	"caret_extra_width": 1,
-	"caret_style": "solid",
-	"color_scheme": "Packages/Theme - Flatland/Flatland Dark.tmTheme",
+	"caret_style": "phased",
+	"color_scheme": "Packages/User/Wombat (SublimePythonIDE).tmTheme",
 	"copy_with_empty_selection": false,
 	"drag_text": false,
 	"draw_minimap_border": true,
@@ -62,8 +62,9 @@
 	[
 		"subpixel_antialias"
 	],
-	"font_size": 10,
+	"font_size": 11,
 	"gutter": true,
+	"highlight_line": true,
 	"ignored_packages":
 	[
 		"Vintage"
@@ -80,12 +81,13 @@
 	"show_encoding": true,
 	"show_line_endings": true,
 	"show_panel_on_build": true,
-	"tab_size": 2,
-	"theme": "Flatland Dark.sublime-theme",
+	"tab_size": 4,
+	"theme": "Wombat.sublime-theme",
 	"translate_tabs_to_spaces": true,
 	"trim_trailing_white_space_on_save": true,
 	"vintageous_reset_mode_when_switching_tabs": false,
 	"vintageous_use_sys_clipboard": true,
-	"word_wrap": true,
-	"wrap_width": 100
+	"wombat_color_blue": true,
+	"wombat_dirty_bottom_bar_blue": true,
+	"word_wrap": false
 }
