@@ -24,8 +24,9 @@
 	"caret_extra_top": 1,
 	"caret_extra_width": 1,
 	"caret_style": "phased",
-	"color_scheme": "Packages/User/Wombat (SublimePythonIDE).tmTheme",
+	"color_scheme": "Packages/User/steve-light.tmTheme",
 	"copy_with_empty_selection": false,
+	"default_line_ending": "unix",
 	"drag_text": false,
 	"draw_minimap_border": true,
 	"ensure_newline_at_eof_on_save": true,
@@ -57,24 +58,30 @@
 		"*.xl*",
 		"*.7z"
 	],
-	"font_face": "consolas",
+	"font_face": "Consolas",
 	"font_options":
 	[
 		"subpixel_antialias"
 	],
-	"font_size": 11,
-	"gutter": true,
+	"font_size": 10,
+	"gutter": false,
 	"highlight_line": true,
 	"ignored_packages":
 	[
 		"Vintage"
 	],
-	"indent_to_bracket": false,
+	"indent_to_bracket": true,
 	"index_exclude_patterns":
 	[
 		"*.log",
 		"*.sas7bdat"
 	],
+	"lp_always_show_minimap_viewport": true,
+	"lp_autohide_scrollbars": true,
+	"lp_bold_folder_labels": true,
+	"lp_highlight_active_sidebar_row": true,
+	"lp_mouse_wheel_switches_tabs": true,
+	"lp_use_vs": true,
 	"overlay_scroll_bars": "enabled",
 	"previw_on_click": false,
 	"shift_tab_unindent": true,
@@ -82,7 +89,7 @@
 	"show_line_endings": true,
 	"show_panel_on_build": true,
 	"tab_size": 4,
-	"theme": "Wombat.sublime-theme",
+	"theme": "LP3.sublime-theme",
 	"translate_tabs_to_spaces": true,
 	"trim_trailing_white_space_on_save": true,
 	"vintageous_reset_mode_when_switching_tabs": false,
