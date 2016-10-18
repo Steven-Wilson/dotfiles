@@ -1,23 +1,11 @@
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-Plugin 'gmarik/Vundle.vim'
-Plugin 'tomasr/molokai'
-Plugin 'fatih/vim-go'
-Plugin 'kien/ctrlp.vim'
-Plugin 'bling/vim-airline'
-
-call vundle#end()
-filetype plugin indent on
-
 syntax on
 
-set term=xterm-256color
+"set term=xterm-256color
 set background=dark
-colorscheme molokai
+colorscheme termschool
 
 set laststatus=2
 set showcmd
@@ -27,6 +15,10 @@ set ignorecase
 set hlsearch
 set incsearch
 set smartcase
+
+set noerrorbells
+set novisualbell
+set t_vb=
 
 set clipboard=unnamed
 map <silent> <C-N> :let @/=<CR>
@@ -49,9 +41,9 @@ set list listchars=tab:\ \ ,trail:~
 set nf=octal,hex,alpha
 
 set expandtab
-set tabstop=2
-set softtabstop=2
-set shiftwidth=2
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
 set smarttab
 set smartindent
 set autoindent
