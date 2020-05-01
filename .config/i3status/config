@@ -1,0 +1,53 @@
+general {
+        colors = true
+        interval = 1
+	color_good = "#6ACFF5"
+	color_degraded = "#8B7857"
+	color_bad = "#FF0000"
+}
+
+order += "disk /"
+order += "cpu_usage"
+order += "battery all"
+order += "tztime local"
+order += "wireless _first_"
+
+cpu_usage {
+	format = "%usage"
+}
+
+wireless _first_ {
+        format_up = "Wifi Connected"
+        format_down = "Wifi Not Connected"
+}
+
+ethernet _first_ {
+        format_up = "Ethernet Connected"
+        format_down = "Ethernet Not Connected"
+}
+
+battery all {
+        format = "%status %percentage (%remaining)"
+	status_chr = "⚡"
+	status_bat = "🔋"
+	status_unk = "?"
+	status_full = "☻ "
+	last_full_capacity = true
+	integer_battery_capacity = true
+	low_threshold = 15
+	threshold_type = "time"
+}
+
+disk "/" {
+        format = "%avail Free"
+}
+
+memory {
+        format = "%used | %available"
+        threshold_degraded = "1G"
+        format_degraded = "MEMORY < %available"
+}
+
+tztime local {
+        format = "%A, %B %d %Y at %l:%M %p"
+}
