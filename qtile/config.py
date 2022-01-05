@@ -1,6 +1,4 @@
-import getpass
 import subprocess
-
 
 from typing import List  # noqa: F401
 from libqtile import bar, layout, widget, hook
@@ -11,21 +9,21 @@ from libqtile.utils import guess_terminal
 
 @hook.subscribe.startup_once
 def autostart():
-    subprocess.Popen('/home/{getpass.getuser()}/.config/qtile/autostart.sh')
+    subprocess.Popen('/home/steven/.config/qtile/autostart.sh')
 
 mod = "mod4"
 
 group_names = [
-    "1",
-    "2",
-    "3",
-    "4",
-    "5",
-    "6",
-    "7",
-    "8",
-    "9",
-    "10",
+    "Main",
+    "Terminal",
+    "Web",
+    "Files",
+    "Side 1",
+    "Side 2",
+    "Video",
+    "Comms",
+    "Music",
+    "Background",
 ]
 
 groups = [Group(name) for name in group_names]
@@ -94,19 +92,35 @@ keys = [
 
 ]
 
-accent_color = "#FF00FF"
+
+bg_color = "#282C34"
+fg_color = "#ABB2BF"
+accent_color = "#61AFEF"
+accent_color2 = "#C678DD"
+accent_color3 = "#56B6C2"
+good_color = "#98C379"
+warn_color = "#E5C07B"
+error_color = "#E06C75"
+
+
 
 
 layouts = [
-    layout.MonadTall(border_focus=accent_color, border_normal='#F0F0F0', margin=5, border_width=3),
-    layout.Columns(border_focus=accent_color, border_normal='#F0F0F0', margin=5, border_width=3),
-    layout.TreeTab(border_focus=accent_color, border_normal='#F0F0F0', margin=5, border_width=3),
-    layout.Zoomy(border_focus=accent_color, border_normal='#F0F0F0', margin=5, border_width=3),
+    layout.MonadTall(
+        border_focus=good_color,
+        border_normal=fg_color,
+        margin=9,
+        border_width=3
+    ),
     layout.Max(),
 ]
 
 
-widget_defaults = dict(font='font-awesome', fontsize=12, padding=3)
+widget_defaults = dict(
+    font='font-awesome',
+    fontsize=12,
+    padding=3,
+)
 
 
 extension_defaults = widget_defaults.copy()
@@ -116,25 +130,36 @@ screens = [
     Screen(
         bottom=bar.Bar(
             [
-                widget.CurrentLayout(),
+                widget.CurrentLayout(foreground=good_color),
                 widget.GroupBox(
                     borderwidth=2,
+                    active=accent_color,
+                    inactive=fg_color,
+                    foreground=accent_color,
                     this_screen_border=accent_color,
                     this_current_screen_border=accent_color,
+                    warn_color=warn_color,
+                    urgent_border=error_color,
                 ),
-                widget.WindowName(),
+                widget.WindowName(
+                    foreground=accent_color2,
+                ),
                 widget.Chord(
-                    chords_colors={'launch': ("#ff0000", "#ffffff")},
+                    chords_colors={'launch': (accent_color2,bg_color)},
                     name_transform=lambda name: name.upper(),
                 ),
-                widget.Bluetooth(),
-                widget.Battery(),
+                widget.Clock(
+                    format='%Y-%m-%d %a %I:%M %p',
+                    foreground=fg_color,
+                ),
+                widget.Sep(foreground=fg_color, padding=5),
+                #widget.Bluetooth(),
                 widget.Systray(),
-                widget.Clock(format='%Y-%m-%d %a %I:%M %p'),
+                widget.BatteryIcon(),
                 widget.QuickExit(),
             ],
             24,
-            background="#000000AA",
+            background=bg_color,
         ),
     ),
 ]
