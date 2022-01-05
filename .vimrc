@@ -1,19 +1,12 @@
 set nocompatible
 
-if &shell =~# 'fish$'
-    set shell=sh
-endif
+set shell=sh
 
 filetype plugin on
 syntax on
 
-"set term=xterm-256color
 set background=dark
-colorscheme termschool
-
-set laststatus=2
-set showcmd
-set lazyredraw
+colorscheme doom-one
 
 set ignorecase
 set hlsearch
@@ -32,7 +25,7 @@ set history=1000
 set shortmess+=filmnroOtT
 set autowrite
 
-set scrolloff=7
+set scrolloff=10
 set sidescrolloff=10
 set sidescroll=1
 
@@ -41,13 +34,13 @@ set lbr
 set showbreak=\|
 
 set list listchars=tab:\ \ ,trail:~
-
 set nf=octal,hex,alpha
 
 set expandtab
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
+
 set smarttab
 set smartindent
 set autoindent
@@ -65,18 +58,22 @@ set number
 set backspace=indent,eol,start
 set showcmd
 set showmode
+set laststatus=2
+set lazyredraw
 
 set splitbelow
 set splitright
 
 set wildmode=list:longest
 set wildmenu
-set wildignore=*.dll,*.lib,*.exe,*.obj,*.sas7*
+set wildignore=*.so,*.app,*.exe,*.lib,*.dll
 
 set notimeout
 set ttimeout
 
 set ruler
 set title
+
 nnoremap <C-a> ggVG
+
 
