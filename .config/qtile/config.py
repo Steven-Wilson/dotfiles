@@ -84,8 +84,8 @@ keys = [
 
     # Launch Programs
     Key([mod], "w", lazy.spawn("firefox")),
-    Key([mod], "Return", lazy.spawn("kitty -e fish")),
-    Key([mod, "shift"], "Return", lazy.spawn("kitty")),
+    Key([mod], "Return", lazy.spawn("xfce4-terminal -e fish")),
+    Key([mod, "shift"], "Return", lazy.spawn("xfce4-terminal")),
     Key([mod], "d", lazy.spawn("rofi -show drun -modi drun")),
     Key([mod, "shift"], "d", lazy.spawn("rofi -show run -modi run")),
     Key([mod], "e", lazy.spawn("nautilus")),
@@ -155,8 +155,8 @@ screens = [
                 widget.Sep(foreground=fg_color, padding=5),
                 #widget.Bluetooth(),
                 widget.Systray(),
-                widget.BatteryIcon(),
-                widget.QuickExit(),
+                #widget.BatteryIcon(),
+                widget.QuickExit(foreground=warn_color),
             ],
             24,
             background=bg_color,
