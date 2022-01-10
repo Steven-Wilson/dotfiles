@@ -1,3 +1,4 @@
+import os
 import subprocess
 
 from typing import List  # noqa: F401
@@ -9,7 +10,7 @@ from libqtile.utils import guess_terminal
 
 @hook.subscribe.startup_once
 def autostart():
-    subprocess.Popen('/home/steven/.config/qtile/autostart.sh')
+    subprocess.Popen(os.path.expanduser('~/.config/qtile/autostart.sh'))
 
 mod = "mod4"
 
@@ -106,7 +107,7 @@ error_color = "#E06C75"
 
 
 layouts = [
-    layout.MonadTall(
+    layout.Columns(
         border_focus=good_color,
         border_normal=fg_color,
         margin=9,
@@ -130,7 +131,6 @@ screens = [
     Screen(
         bottom=bar.Bar(
             [
-                widget.CurrentLayout(foreground=good_color),
                 widget.GroupBox(
                     borderwidth=2,
                     active=accent_color,
@@ -148,6 +148,8 @@ screens = [
                     chords_colors={'launch': (accent_color2,bg_color)},
                     name_transform=lambda name: name.upper(),
                 ),
+                widget.CurrentLayout(foreground=good_color),
+                widget.Sep(foreground=fg_color, padding=5),
                 widget.Clock(
                     format='%Y-%m-%d %a %I:%M %p',
                     foreground=fg_color,
