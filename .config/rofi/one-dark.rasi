@@ -1,0 +1,164 @@
+
+/******************************************************************************
+ * ROFI Color theme
+ * User: Rasi
+ * Copyright: Rasmus Steinke
+ ******************************************************************************/
+* {
+    theme-foreground:            #abb2bf;
+    theme-background:            #282c34;
+    theme-accent1:               #61afef;
+    theme-accent2:               #c678dd;
+    theme-good:                  #98c379;
+    theme-warn:                  #e5c07b;
+    theme-error:                 #e06c75;
+
+    background:                  @theme-accent2;
+    background-color:            @theme-background;
+
+    normal-background:           @theme-background;
+    alternate-normal-background: @theme-background;
+    selected-normal-background:  @theme-accent1;
+
+    active-background:           @theme-background;
+    alternate-active-background: @theme-background;
+    selected-active-background:  @theme-background;
+
+    urgent-background:           @theme-background;
+    alternate-urgent-background: @theme-background;
+    selected-urgent-background:  @theme-background;
+
+    foreground:                  @theme-foreground;
+    foreground-color:            @theme-foreground;
+
+    normal-foreground:           @theme-foreground;
+    alternate-normal-foreground: @theme-foreground;
+    selected-normal-foreground:  @theme-background;
+
+    active-foreground:           @theme-warn;
+    alternate-active-foreground: @theme-warn;
+    selected-active-foreground:  @theme-warn;
+
+    urgent-foreground:           @theme-warn;
+    alternate-urgent-foreground: @theme-warn;
+    selected-urgent-foreground:  @theme-warn;
+
+    bordercolor:                 @theme-accent2;
+    border-color:                @theme-accent2;
+
+    blue:                        @theme-warn;
+    lightbg:                     @theme-warn;
+    red:                         @theme-warn;
+    lightfg:                     @theme-warn;
+    spacing:                     @theme-warn;
+    separatorcolor:              @theme-accent2;
+}
+window {
+    background-color: @background;
+    border:           1;
+    padding:          5;
+}
+mainbox {
+    border:  0;
+    padding: 0;
+}
+message {
+    border:       1px dash 0px 0px ;
+    border-color: @separatorcolor;
+    padding:      1px ;
+}
+textbox {
+    text-color: @theme-accent2;
+}
+listview {
+    fixed-height: 0;
+    border:       2px dash 0px 0px ;
+    border-color: @separatorcolor;
+    spacing:      2px ;
+    scrollbar:    true;
+    padding:      2px 0px 0px ;
+}
+element {
+    border:  0;
+    padding: 1px ;
+}
+element-text {
+    background-color: inherit;
+    text-color:       inherit;
+}
+element.normal.normal {
+    background-color: @normal-background;
+    text-color:       @theme-accent1;
+}
+element.normal.urgent {
+    background-color: @urgent-background;
+    text-color:       @urgent-foreground;
+}
+element.normal.active {
+    background-color: @active-background;
+    text-color:       @active-foreground;
+}
+element.selected.normal {
+    background-color: @selected-normal-background;
+    text-color:       @selected-normal-foreground;
+}
+element.selected.urgent {
+    background-color: @selected-urgent-background;
+    text-color:       @selected-urgent-foreground;
+}
+element.selected.active {
+    background-color: @selected-active-background;
+    text-color:       @selected-active-foreground;
+}
+element.alternate.normal {
+    background-color: @alternate-normal-background;
+    text-color:       @theme-accent2;
+}
+element.alternate.urgent {
+    background-color: @alternate-urgent-background;
+    text-color:       @alternate-urgent-foreground;
+}
+element.alternate.active {
+    background-color: @alternate-active-background;
+    text-color:       @alternate-active-foreground;
+}
+scrollbar {
+    width:        4px ;
+    border:       0;
+    handle-width: 8px ;
+    padding:      0;
+}
+mode-switcher {
+    border:       2px dash 0px 0px ;
+    border-color: @separatorcolor;
+}
+button.selected {
+    background-color: @selected-normal-background;
+    text-color:       @selected-normal-foreground;
+}
+inputbar {
+    spacing:    0;
+    text-color: @theme-accent2;
+    padding:    1px ;
+}
+case-indicator {
+    spacing:    0;
+    text-color: @normal-foreground;
+}
+entry {
+    spacing:    0;
+    text-color: @theme-accent1;
+}
+prompt {
+    spacing:    0;
+    text-color: @theme-accent1;
+}
+inputbar {
+    children:   [ prompt,textbox-prompt-colon,entry,case-indicator ];
+}
+textbox-prompt-colon {
+    expand:     false;
+    str:        ":";
+    margin:     0px 0.3em 0em 0em ;
+    text-color: @theme-accent1;
+}
