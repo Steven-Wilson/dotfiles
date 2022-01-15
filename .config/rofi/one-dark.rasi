@@ -18,7 +18,7 @@
 
     normal-background:           @theme-background;
     alternate-normal-background: @theme-background;
-    selected-normal-background:  @theme-accent1;
+    selected-normal-background:  @theme-background;
 
     active-background:           @theme-background;
     alternate-active-background: @theme-background;
@@ -33,7 +33,7 @@
 
     normal-foreground:           @theme-foreground;
     alternate-normal-foreground: @theme-foreground;
-    selected-normal-foreground:  @theme-background;
+    selected-normal-foreground:  @theme-accent1;
 
     active-foreground:           @theme-warn;
     alternate-active-foreground: @theme-warn;
@@ -88,7 +88,7 @@ element-text {
 }
 element.normal.normal {
     background-color: @normal-background;
-    text-color:       @theme-accent1;
+    text-color:       @normal-foreground;
 }
 element.normal.urgent {
     background-color: @urgent-background;
@@ -112,7 +112,7 @@ element.selected.active {
 }
 element.alternate.normal {
     background-color: @alternate-normal-background;
-    text-color:       @theme-accent2;
+    text-color:       @alternate-normal-foreground;
 }
 element.alternate.urgent {
     background-color: @alternate-urgent-background;
