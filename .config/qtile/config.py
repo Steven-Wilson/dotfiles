@@ -89,7 +89,10 @@ keys = [
     Key([mod], "d", lazy.spawn("rofi -show drun -modi drun")),
     Key([mod, "shift"], "d", lazy.spawn("rofi -show run -modi run")),
     Key([mod], "e", lazy.spawn("nautilus")),
+    Key([mod], "b", lazy.spawn("battery-status")),
 
+    Key([mod], "minus", lazy.spawn("decrease-brightness")),
+    Key([mod], "equal", lazy.spawn("increase-brightness")),
 ]
 
 
@@ -155,7 +158,7 @@ screens = [
                 widget.Sep(foreground=fg_color, padding=5),
                 #widget.Bluetooth(),
                 widget.Systray(),
-                #widget.BatteryIcon(),
+                widget.Battery(),
                 widget.QuickExit(foreground=warn_color),
             ],
             24,

@@ -57,7 +57,7 @@ nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 let g:vimwiki_list = [
     \ {
-        \ 'path': '~/notes/todo',
+        \ 'path': '~/notes',
         \ 'syntax': 'markdown',
         \ 'ext': '.md',
         \ 'auto_tags': 1,
