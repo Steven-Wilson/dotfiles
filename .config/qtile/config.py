@@ -115,6 +115,7 @@ layouts = [
         margin=9,
         border_width=3
     ),
+    layout.Matrix(),
     layout.Max(),
 ]
 
