@@ -1,0 +1,279 @@
+#!/usr/bin/env bash
+
+# this is a simple config for herbstluftwm
+
+hc() {
+    herbstclient "$@"
+}
+
+hc emit_hook reload
+
+xsetroot -solid '#5A8E3A'
+
+# remove all existing keybindings
+hc keyunbind --all
+
+# keybindings
+# if you have a super key you will be much happier with Mod set to Mod4
+#Mod=Mod1    # Use alt as the main modifier
+Mod=Mod4   # Use the super key as the main modifier
+resizestep=0.02
+
+compton &
+/home/steven/.screenlayout/triple.sh
+feh --bg-scale "$HOME/dotfiles/background.png"
+
+
+bg_color="#282C34"
+fg_color="#ABB2BF"
+accent_color="#61AFEF"
+accent_color2="#C678DD"
+accent_color3="#56B6C2"
+good_color="#98C379"
+warn_color="#E5C07B"
+error_color="#E06C75"
+
+hc keybind $Mod-Shift-e quit
+hc keybind $Mod-Shift-r reload
+hc keybind $Mod-Shift-q close
+
+
+# L1 - L4
+hc keybind XF86Launch5 spawn /home/steven/bin/eq-assist.sh L1
+hc keybind XF86Launch6 spawn /home/steven/bin/eq-assist.sh L2
+hc keybind XF86Launch7 spawn /home/steven/bin/eq-assist.sh L3
+hc keybind XF86Launch8 spawn /home/steven/bin/eq-assist.sh L4
+
+# M1 - M12
+hc keybind XF86Launch1 spawn /home/steven/bin/eq-assist.sh M1
+hc keybind XF86Launch2 spawn /home/steven/bin/eq-assist.sh M2
+hc keybind XF86WWW spawn /home/steven/bin/eq-assist.sh M3
+hc keybind XF86DOS spawn /home/steven/bin/eq-assist.sh M4
+hc keybind XF86ScreenSaver spawn /home/steven/bin/eq-assist.sh M5
+hc keybind XF86RotateWindows spawn /home/steven/bin/eq-assist.sh M6
+hc keybind XF86TaskPane spawn /home/steven/bin/eq-assist.sh M7
+hc keybind XF86Mail spawn /home/steven/bin/eq-assist.sh M8
+hc keybind XF86Favorites spawn /home/steven/bin/eq-assist.sh M9
+hc keybind XF86MyComputer spawn /home/steven/bin/eq-assist.sh M10
+hc keybind XF86Back spawn /home/steven/bin/eq-assist.sh M11
+hc keybind XF86Forward spawn /home/steven/bin/eq-assist.sh M12
+
+# MX1 - MX10
+hc keybind XF86AudioMedia spawn /home/steven/bin/eq-assist.sh MX1
+hc keybind XF86Display spawn /home/steven/bin/eq-assist.sh MX2
+hc keybind XF86KbdLightOnOff spawn /home/steven/bin/eq-assist.sh MX3
+hc keybind XF86KbdBrightnessDown spawn /home/steven/bin/eq-assist.sh MX4
+hc keybind XF86KbdBrightnessUp spawn /home/steven/bin/eq-assist.sh MX5
+hc keybind XF86Reply spawn /home/steven/bin/eq-assist.sh MX6
+hc keybind XF86MailForward spawn /home/steven/bin/eq-assist.sh MX7
+hc keybind XF86Save spawn /home/steven/bin/eq-assist.sh MX8
+hc keybind XF86Documents spawn /home/steven/bin/eq-assist.sh MX9
+hc keybind XF86Battery spawn /home/steven/bin/eq-assist.sh MX10
+
+# Diagonal Arrows left/right up
+hc keybind XF86ScrollUp spawn /home/steven/bin/eq-assist.sh UPLEFT
+hc keybind XF86ScrollDown spawn /home/steven/bin/eq-assist.sh UPRIGHT
+
+# Media Keys
+hc keybind XF86AudioRaiseVolume spawn /home/steven/bin/eq-assist.sh RAISEVOLUME
+hc keybind XF86AudioLowerVolume spawn /home/steven/bin/eq-assist.sh LOWERVOLUME
+hc keybind XF86AudioMute spawn /home/steven/bin/eq-assist.sh MUTE
+hc keybind XF86AudioPrev spawn /home/steven/bin/eq-assist.sh PREV
+hc keybind XF86AudioNext spawn /home/steven/bin/eq-assist.sh NEXT
+hc keybind XF86AudioPlay spawn /home/steven/bin/eq-assist.sh PLAY
+
+hc keybind $Mod-d spawn rofi -modi drun -show drun
+hc keybind $Mod-Shift-d spawn rofi -modi run -show run
+hc keybind $Mod-e spawn nautilus
+hc keybind $Mod-w spawn firefox
+hc keybind $Mod-Return spawn xfce4-terminal -e fish
+hc keybind $Mod-Shift-Return spawn xfce4-terminal
+
+# basic movement in tiling and floating mode
+# focusing clients
+hc keybind $Mod-h focus left
+hc keybind $Mod-j focus down
+hc keybind $Mod-k focus up
+hc keybind $Mod-l focus right
+
+# moving clients in tiling and floating mode
+hc keybind $Mod-Shift-h shift left
+hc keybind $Mod-Shift-j shift down
+hc keybind $Mod-Shift-k shift up
+hc keybind $Mod-Shift-l shift right
+
+# splitting frames
+# create an empty frame at the specified direction
+hc keybind $Mod-u split bottom 0.5
+hc keybind $Mod-o split right 0.5
+
+# let the current frame explode into subframes
+hc keybind $Mod-Control-space split explode
+
+# resizing frames and floating clients
+hc keybind $Mod-Control-h resize left +$resizestep
+hc keybind $Mod-Control-j resize down +$resizestep
+hc keybind $Mod-Control-k resize up +$resizestep
+hc keybind $Mod-Control-l resize right +$resizestep
+
+# tags
+tag_names=( {1..9} )
+tag_keys=( {1..9} 0 )
+
+hc rename default "${tag_names[0]}" || true
+for i in "${!tag_names[@]}" ; do
+    hc add "${tag_names[$i]}"
+    key="${tag_keys[$i]}"
+    if ! [ -z "$key" ] ; then
+        hc keybind "$Mod-$key" use_index "$i"
+        hc keybind "$Mod-Shift-$key" move_index "$i"
+    fi
+done
+
+# cycle through tags
+#hc keybind $Mod-period use_index +1 --skip-visible
+#hc keybind $Mod-comma  use_index -1 --skip-visible
+
+# layouting
+hc keybind $Mod-r remove
+hc keybind $Mod-Shift-space floating toggle
+hc keybind $Mod-f fullscreen toggle
+
+#hc keybind $Mod-Shift-f set_attr clients.focus.floating toggle
+#hc keybind $Mod-Shift-m set_attr clients.focus.minimized true
+
+# restore all minimized windows of the focused tag
+hc keybind $Mod-Ctrl-m foreach CLIENT clients. \
+     sprintf MINATT "%c.minimized" CLIENT \
+     sprintf TAGATT "%c.tag" CLIENT and \
+       , compare MINATT "=" "true" \
+       , substitute FOCUS "tags.focus.name" compare TAGATT "=" FOCUS \
+       , set_attr MINATT false
+
+hc keybind $Mod-p pseudotile toggle
+# The following cycles through the available layouts within a frame, but skips
+# layouts, if the layout change wouldn't affect the actual window positions.
+# I.e. if there are two windows within a frame, the grid layout is skipped.
+hc keybind $Mod-space                                                           \
+            or , and . compare tags.focus.curframe_wcount = 2                   \
+                     . cycle_layout +1 vertical horizontal max vertical grid    \
+               , cycle_layout +1
+
+# mouse
+hc mouseunbind --all
+hc mousebind $Mod-Button1 move
+hc mousebind $Mod-Button2 zoom
+hc mousebind $Mod-Button3 resize
+
+# focus
+hc keybind $Mod-BackSpace   cycle_monitor
+hc keybind $Mod-Tab         cycle_all +1
+hc keybind $Mod-Shift-Tab   cycle_all -1
+hc keybind $Mod-c cycle
+hc keybind $Mod-i jumpto urgent
+
+# theme
+hc attr theme.tiling.reset 1
+hc attr theme.floating.reset 1
+
+hc set frame_border_active_color $accent_color2
+hc set frame_border_inner_color $bg_color
+hc set frame_border_normal_color $bg_color
+hc set frame_border_urgent_color $error_color
+
+hc set window_border_active_color $accent_color2
+hc set window_border_inner_color $fg_color
+hc set window_border_normal_color $fg_color
+hc set window_border_urgent_color $error_color
+
+hc set frame_bg_normal_color $bg_color
+hc set frame_bg_active_color $bg_color
+hc set frame_border_width 1
+hc set always_show_frame on
+hc set frame_bg_transparent on
+hc set frame_transparent_width 5
+hc set frame_gap 4
+
+hc attr theme.title_height 20
+hc attr theme.title_font 'Dejavu Sans:pixelsize=12'  # example using Xft
+# hc attr theme.title_font '-*-fixed-medium-r-*-*-13-*-*-*-*-*-*-*'
+hc attr theme.padding_top 0  # space below the title's baseline (i.e. text depth0
+
+hc attr theme.color $bg_color
+
+hc attr theme.border_width 3
+hc attr theme.outer_width 0
+hc attr theme.background_color $bg_color
+hc attr theme.color $bg_color
+hc attr theme.inner_color $bg_color
+hc attr theme.outer_color $bg_color
+
+hc attr theme.active.border_width 3
+hc attr theme.active.outer_width 0
+hc attr theme.active.background_color $accent_color2
+hc attr theme.active.color $accent_color2
+hc attr theme.active.inner_color $accent_color2
+hc attr theme.active.outer_color $accent_color2
+
+hc attr theme.active.border_width 3
+hc attr theme.active.outer_width 0
+hc attr theme.normal.background_color $fg_color
+hc attr theme.normal.color $fg_color
+hc attr theme.normal.inner_color $fg_color
+hc attr theme.normal.outer_color $fg_color
+
+hc attr theme.urgent.border_width 3
+hc attr theme.urgent.outer_width 0
+hc attr theme.urgent.background_color $error_color
+hc attr theme.urgent.color $error_color
+hc attr theme.urgent.inner_color $error_color
+hc attr theme.urgent.outer_color $error_color
+
+hc attr theme.floating.border_width 0
+hc attr theme.floating.outer_width 0
+hc attr theme.floating.background_color $good_color
+hc attr theme.floating.color $good_color
+hc attr theme.floating.inner_color $good_color
+hc attr theme.floating.outer_color $good_color
+
+hc set window_gap 0
+hc set frame_padding 0
+hc set smart_window_surroundings off
+hc set smart_frame_surroundings on
+hc set mouse_recenter_gap 0
+
+# rules
+hc unrule -F
+#hc rule class=XTerm tag=3 # move all xterms to tag 3
+hc rule focus=on # normally focus new clients
+hc rule floatplacement=smart
+#hc rule focus=off # normally do not focus new clients
+# give focus to most common terminals
+#hc rule class~'(.*[Rr]xvt.*|.*[Tt]erm|Konsole)' focus=on
+hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' floating=on
+hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on
+hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
+
+hc set tree_style '╾│ ├└╼─┐'
+
+# unlock, just to be sure
+hc unlock
+
+# do multi monitor setup here, e.g.:
+#hc set_monitors 498x1600+0+0 2844x1600+498+0 498x1600+3342+0 3840x560+0+1600
+#hc set_monitors 2844x1600+0+0 996x1600+2844+0 3840x560+0+1600
+#hc set_monitors 3840x2160+0+0
+hc set_monitors 3840x1600+0+0
+#hc set_monitors 960x1600+0+0 1920x1600+960+0 960x1600+2880+0
+#hc set_monitors 1920x1080+0+0 1920x1080+1920+0
+#hc set_monitors 1920x1080+0+0
+# or simply:
+# hc detect_monitors
+
+# find the panel
+panel=~/.config/herbstluftwm/panel.sh
+[ -x "$panel" ] || panel=/etc/xdg/herbstluftwm/panel.sh
+for monitor in $(hc list_monitors | cut -d: -f1) ; do
+    # start it on each monitor
+    "$panel" "$monitor" &
+done
