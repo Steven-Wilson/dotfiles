@@ -19,8 +19,7 @@ hc keyunbind --all
 Mod=Mod4   # Use the super key as the main modifier
 resizestep=0.02
 
-compton &
-/home/steven/.screenlayout/triple.sh
+picom &
 feh --bg-scale "$HOME/dotfiles/background.png"
 
 
@@ -194,7 +193,7 @@ hc set frame_bg_transparent on
 hc set frame_transparent_width 5
 hc set frame_gap 4
 
-hc attr theme.title_height 20
+hc attr theme.title_height 0
 hc attr theme.title_font 'Dejavu Sans:pixelsize=12'  # example using Xft
 # hc attr theme.title_font '-*-fixed-medium-r-*-*-13-*-*-*-*-*-*-*'
 hc attr theme.padding_top 0  # space below the title's baseline (i.e. text depth0
@@ -263,17 +262,17 @@ hc unlock
 #hc set_monitors 498x1600+0+0 2844x1600+498+0 498x1600+3342+0 3840x560+0+1600
 #hc set_monitors 2844x1600+0+0 996x1600+2844+0 3840x560+0+1600
 #hc set_monitors 3840x2160+0+0
-hc set_monitors 3840x1600+0+0
+# hc set_monitors 3840x1600+0+0
 #hc set_monitors 960x1600+0+0 1920x1600+960+0 960x1600+2880+0
 #hc set_monitors 1920x1080+0+0 1920x1080+1920+0
 #hc set_monitors 1920x1080+0+0
 # or simply:
-# hc detect_monitors
+hc detect_monitors
 
 # find the panel
-panel=~/.config/herbstluftwm/panel.sh
-[ -x "$panel" ] || panel=/etc/xdg/herbstluftwm/panel.sh
-for monitor in $(hc list_monitors | cut -d: -f1) ; do
+#panel=~/.config/herbstluftwm/panel.sh
+#[ -x "$panel" ] || panel=/etc/xdg/herbstluftwm/panel.sh
+#for monitor in $(hc list_monitors | cut -d: -f1) ; do
     # start it on each monitor
-    "$panel" "$monitor" &
-done
+#    "$panel" "$monitor" &
+#done
