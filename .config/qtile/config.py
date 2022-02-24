@@ -2,7 +2,7 @@ import subprocess
 
 from typing import List  # noqa: F401
 from libqtile import bar, layout, widget, hook
-from libqtile.config import Click, Drag, Group, Key, Match, Screen
+from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 
@@ -15,7 +15,7 @@ mod = "mod4"
 
 group_names = [
     "Main",
-    "Terminal",
+    "Boxes",
     "Web",
     "Files",
     "Side 1",
@@ -88,11 +88,26 @@ keys = [
     Key([mod, "shift"], "Return", lazy.spawn("xfce4-terminal")),
     Key([mod], "d", lazy.spawn("rofi -show drun -modi drun")),
     Key([mod, "shift"], "d", lazy.spawn("rofi -show run -modi run")),
-    Key([mod], "e", lazy.spawn("nautilus")),
+    Key([mod], "e", lazy.spawn("thunar")),
     Key([mod], "b", lazy.spawn("battery-status")),
 
     Key([mod], "minus", lazy.spawn("decrease-brightness")),
     Key([mod], "equal", lazy.spawn("increase-brightness")),
+
+    KeyChord([mod], "grave", [
+        KeyChord([], "r", [
+            Key([], "1", lazy.spawn("send_command assist")),
+            Key([], "2", lazy.spawn("send_command spread2")),
+            Key([], "3", lazy.spawn("send_command spread3")),
+            Key([], "4", lazy.spawn("send_command spread4")),
+        ]),
+        Key([], "q", lazy.spawn("send_command assist")),
+        Key([], "d", lazy.spawn("send_command nuke")),
+        Key([], "a", lazy.spawn("send_command back")),
+        Key([], "z", lazy.spawn("send_command sit")),
+        Key([], "f", lazy.spawn("send_command follow")),
+    ]),
+
 ]
 
 
@@ -115,7 +130,12 @@ layouts = [
         margin=9,
         border_width=3
     ),
-    layout.Matrix(),
+    layout.Matrix(
+        border_focus=good_color,
+        border_normal=fg_color,
+        margin=3,
+        border_width=3
+    ),
     layout.Max(),
 ]
 
@@ -149,7 +169,9 @@ screens = [
                     foreground=accent_color2,
                 ),
                 widget.Chord(
-                    chords_colors={'launch': (accent_color2,bg_color)},
+                    chords_colors={
+                        'launch': (accent_color2,bg_color),
+                    },
                     name_transform=lambda name: name.upper(),
                 ),
                 widget.Clock(
@@ -159,7 +181,7 @@ screens = [
                 widget.Sep(foreground=fg_color, padding=5),
                 #widget.Bluetooth(),
                 widget.Systray(),
-                widget.Battery(),
+                #widget.Battery(),
                 widget.QuickExit(foreground=warn_color),
             ],
             24,
@@ -180,16 +202,20 @@ dgroups_app_rules = []  # type: List
 follow_mouse_focus = True
 bring_front_click = False
 cursor_warp = False
-floating_layout = layout.Floating(float_rules=[
-    # Run the utility of `xprop` to see the wm class and name of an X client.
-    *layout.Floating.default_float_rules,
-    Match(wm_class='confirmreset'),  # gitk
-    Match(wm_class='makebranch'),  # gitk
-    Match(wm_class='maketag'),  # gitk
-    Match(wm_class='ssh-askpass'),  # ssh-askpass
-    Match(title='branchdialog'),  # gitk
-    Match(title='pinentry'),  # GPG key password entry
-])
+floating_layout = layout.Floating(
+    float_rules=[
+        # Run the utility of `xprop` to see the wm class and name of an X client.
+        *layout.Floating.default_float_rules[:-2],
+        Match(wm_class='confirmreset'),  # gitk
+        Match(wm_class='makebranch'),  # gitk
+        Match(wm_class='maketag'),  # gitk
+        Match(wm_class='ssh-askpass'),  # ssh-askpass
+        Match(title='branchdialog'),  # gitk
+        Match(title='pinentry'),  # GPG key password entry
+    ],
+    border_focus=good_color,
+    border_normal=fg_color,
+)
 
 auto_fullscreen = True
 focus_on_window_activation = "smart"

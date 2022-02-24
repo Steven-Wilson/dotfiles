@@ -19,7 +19,7 @@ hc keyunbind --all
 Mod=Mod4   # Use the super key as the main modifier
 resizestep=0.02
 
-picom &
+picom -bcf --fade-in-step=1 --fade-out-step=1 --fade-delta=0 --inactive-opacity=1 --frame-opacity=1
 feh --bg-scale "$HOME/dotfiles/background.png"
 
 
@@ -36,6 +36,15 @@ hc keybind $Mod-Shift-e quit
 hc keybind $Mod-Shift-r reload
 hc keybind $Mod-Shift-q close
 
+
+hc keybind $Mod-Ctrl-1 spawn send_command assist
+hc keybind $Mod-Ctrl-2 spawn send_command nuke
+hc keybind $Mod-Ctrl-3 spawn send_command back
+hc keybind $Mod-Ctrl-4 spawn send_command sit
+hc keybind $Mod-Ctrl-5 spawn send_command follow
+hc keybind $Mod-Ctrl-6 spawn send_command spread2
+hc keybind $Mod-Ctrl-7 spawn send_command spread3
+hc keybind $Mod-Ctrl-8 spawn send_command spread4
 
 # L1 - L4
 hc keybind XF86Launch5 spawn /home/steven/bin/eq-assist.sh L1
@@ -259,7 +268,7 @@ hc set tree_style '╾│ ├└╼─┐'
 hc unlock
 
 # do multi monitor setup here, e.g.:
-#hc set_monitors 498x1600+0+0 2844x1600+498+0 498x1600+3342+0 3840x560+0+1600
+#hc set_monitors 498x1600+0+0 2844x1600+498+0 498x1600+3342+0
 #hc set_monitors 2844x1600+0+0 996x1600+2844+0 3840x560+0+1600
 #hc set_monitors 3840x2160+0+0
 # hc set_monitors 3840x1600+0+0
