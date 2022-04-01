@@ -2,11 +2,11 @@ set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath = &runtimepath
 
 let g:doom_one_terminal_colors = v:true
-"set termguicolors
+set termguicolors
 
 call plug#begin()
 
-Plug 'dylanaraps/wal.vim'
+"Plug 'dylanaraps/wal.vim'
 Plug 'vimwiki/vimwiki'
 Plug 'romgrk/doom-one.vim'
 Plug 'nvim-lua/popup.nvim'
