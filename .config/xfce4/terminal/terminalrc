@@ -34,6 +34,6 @@ ColorBold=#6161afafefef
 ColorBackground=#000000000000
 ColorForeground=#ababb2b2bfbf
 TabActivityColor=#e5e5c0c07b7b
-BackgroundDarkness=0.760000
+BackgroundDarkness=0.900000
 BackgroundMode=TERMINAL_BACKGROUND_TRANSPARENT
 

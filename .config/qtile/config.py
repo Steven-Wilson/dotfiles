@@ -14,16 +14,16 @@ def autostart():
 mod = "mod4"
 
 group_names = [
-    "Main",
-    "Boxes",
-    "Web",
-    "Files",
-    "Side 1",
-    "Side 2",
-    "Video",
-    "Comms",
-    "Music",
-    "Background",
+    "1. Main",
+    "2. Terminal",
+    "3. Web",
+    "4. Files",
+    "5. Side 1",
+    "6. Side 2",
+    "7. Video",
+    "8. Comms",
+    "9. Music",
+    "0. Background",
 ]
 
 groups = [Group(name) for name in group_names]
@@ -83,7 +83,7 @@ keys = [
     Key([mod, "shift"], "0", lazy.window.togroup(group_names[9], switch_group=False)),
 
     # Launch Programs
-    Key([mod], "w", lazy.spawn("firefox")),
+    Key([mod], "w", lazy.spawn("brave")),
     Key([mod], "Return", lazy.spawn("xfce4-terminal -e fish")),
     Key([mod, "shift"], "Return", lazy.spawn("xfce4-terminal")),
     Key([mod], "d", lazy.spawn("rofi -show drun -modi drun")),
@@ -154,7 +154,6 @@ screens = [
     Screen(
         bottom=bar.Bar(
             [
-                widget.CurrentLayout(foreground=good_color),
                 widget.GroupBox(
                     borderwidth=2,
                     active=accent_color,
@@ -174,6 +173,8 @@ screens = [
                     },
                     name_transform=lambda name: name.upper(),
                 ),
+                widget.CurrentLayout(foreground=good_color),
+                widget.Sep(foreground=fg_color, padding=5),
                 widget.Clock(
                     format='%Y-%m-%d %a %I:%M %p',
                     foreground=fg_color,
@@ -181,7 +182,7 @@ screens = [
                 widget.Sep(foreground=fg_color, padding=5),
                 #widget.Bluetooth(),
                 widget.Systray(),
-                #widget.Battery(),
+                widget.Battery(),
                 widget.QuickExit(foreground=warn_color),
             ],
             24,
