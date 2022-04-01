@@ -1,0 +1,4 @@
+alt - return : /Applications/kitty.app/Contents/MacOS/kitty --single-instance -d ~
+alt + shift - r : skhd -r
+alt - w : /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --single-instance
+

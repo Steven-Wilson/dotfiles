@@ -24,53 +24,43 @@ source ~/.vimrc
 
 let mapleader=" "
 
+nnoremap <C-a> ggVG
+
 nnoremap <Leader><space> :nohl<CR>
 
-nnoremap <Leader>g :Neogit<CR>
 
 nnoremap <Leader>nn :ZettelNew<space>
+nnoremap <Leader>ni ggVGd:ZettelGenerateLinks<CR>
 
-nmap <silent> <A-h> :wincmd h<CR>
-nmap <silent> <A-j> :wincmd j<CR>
-nmap <silent> <A-k> :wincmd k<CR>
-nmap <silent> <A-l> :wincmd l<CR>
+nnoremap <Leader>- :sp<CR>
+nnoremap <Leader>\| :vs<CR>
+nnoremap <Leader>o :on<CR>
+nnoremap <Leader>q ZZ<CR>
 
-imap <silent> <A-h> <ESC>:wincmd h<CR>
-imap <silent> <A-j> <ESC>:wincmd j<CR>
-imap <silent> <A-k> <ESC>:wincmd k<CR>
-imap <silent> <A-l> <ESC>:wincmd l<CR>
+nnoremap <Leader>r :source ~/.config/nvim/init.vim<CR>
+nnoremap <Leader>s :w<CR>
+nnoremap <Leader>a ggVG
+nnoremap <Leader>d :bdelete<CR>
+nnoremap <Leader>g :Neogit<CR>
 
-vmap <silent> <A-h> <ESC>:wincmd h<CR>
-vmap <silent> <A-j> <ESC>:wincmd j<CR>
-vmap <silent> <A-k> <ESC>:wincmd k<CR>
-vmap <silent> <A-l> <ESC>:wincmd l<CR>
+" Navigate Through buffers
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <Leader>[ :bprevious<CR>
+nnoremap <Leader>] :bnext<CR>
 
-" Resize
-nmap <silent> <A-H> 3<C-W><
-nmap <silent> <A-J> 3<C-W>+
-nmap <silent> <A-K> 3<C-W>-
-nmap <silent> <A-L> 3<C-W>>
+" Navigate through splits
+nnoremap <Leader>h :wincmd h<CR>
+nnoremap <Leader>j :wincmd j<CR>
+nnoremap <Leader>k :wincmd k<CR>
+nnoremap <Leader>l :wincmd l<CR>
 
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 let g:vimwiki_list = [
     \ {
         \ 'path': '~/notes',
-        \ 'syntax': 'markdown',
-        \ 'ext': '.md',
-        \ 'auto_tags': 1,
-        \ 'auto_toc': 1 },
-    \ {
-        \ 'path': '~/notes/fleeting',
-        \ 'syntax': 'markdown',
-        \ 'ext': '.md',
-        \ 'auto_tags': 1,
-        \ 'auto_toc': 1 },
-    \ {
-        \ 'path': '~/notes/zettel',
         \ 'syntax': 'markdown',
         \ 'ext': '.md',
         \ 'auto_tags': 1,
@@ -94,8 +84,10 @@ let g:ctrlp_custom_ignore = {
     \ }
 
 set ff=unix
+set cursorline
 
 lua << EOF
+local async = require('plenary.async')
 local neogit = require('neogit')
 neogit.setup()
 EOF

@@ -55,6 +55,7 @@ set autoread
 
 set hidden
 set number
+set relativenumber
 set backspace=indent,eol,start
 set showcmd
 set showmode
@@ -74,6 +75,5 @@ set ttimeout
 set ruler
 set title
 
-nnoremap <C-a> ggVG
 
 
