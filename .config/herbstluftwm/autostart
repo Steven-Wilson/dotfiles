@@ -19,9 +19,10 @@ hc keyunbind --all
 Mod=Mod4   # Use the super key as the main modifier
 resizestep=0.02
 
-picom -bcf --fade-in-step=1 --fade-out-step=1 --fade-delta=0 --inactive-opacity=1 --frame-opacity=1
+killall picom &
+picom -bcf --fade-in-step=1 --fade-out-step=1 --fade-delta=0 --inactive-opacity=1 --frame-opacity=1 --experimental-backends --vsync
 feh --bg-scale "$HOME/dotfiles/background.png"
-
+setxkbmap -option caps:super
 
 bg_color="#282C34"
 fg_color="#ABB2BF"
@@ -202,6 +203,8 @@ hc set frame_bg_transparent on
 hc set frame_transparent_width 5
 hc set frame_gap 4
 
+hc set snap_gap 0
+
 hc attr theme.title_height 0
 hc attr theme.title_font 'Dejavu Sans:pixelsize=12'  # example using Xft
 # hc attr theme.title_font '-*-fixed-medium-r-*-*-13-*-*-*-*-*-*-*'
@@ -279,9 +282,5 @@ hc unlock
 hc detect_monitors
 
 # find the panel
-#panel=~/.config/herbstluftwm/panel.sh
-#[ -x "$panel" ] || panel=/etc/xdg/herbstluftwm/panel.sh
-#for monitor in $(hc list_monitors | cut -d: -f1) ; do
-    # start it on each monitor
-#    "$panel" "$monitor" &
-#done
+killall polybar &
+~/.config/polybar/launch.sh --shapes &

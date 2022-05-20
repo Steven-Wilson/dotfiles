@@ -7,6 +7,7 @@ set termguicolors
 call plug#begin()
 
 "Plug 'dylanaraps/wal.vim'
+Plug 'linkinpark342/xonsh-vim'
 Plug 'vimwiki/vimwiki'
 Plug 'romgrk/doom-one.vim'
 Plug 'nvim-lua/popup.nvim'

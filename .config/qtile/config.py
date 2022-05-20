@@ -189,6 +189,44 @@ screens = [
             background=bg_color,
         ),
     ),
+    Screen(
+        bottom=bar.Bar(
+            [
+                widget.GroupBox(
+                    borderwidth=2,
+                    active=accent_color,
+                    inactive=fg_color,
+                    foreground=accent_color,
+                    this_screen_border=accent_color,
+                    this_current_screen_border=accent_color,
+                    warn_color=warn_color,
+                    urgent_border=error_color,
+                ),
+                widget.WindowName(
+                    foreground=accent_color2,
+                ),
+                widget.Chord(
+                    chords_colors={
+                        'launch': (accent_color2,bg_color),
+                    },
+                    name_transform=lambda name: name.upper(),
+                ),
+                widget.CurrentLayout(foreground=good_color),
+                widget.Sep(foreground=fg_color, padding=5),
+                widget.Clock(
+                    format='%Y-%m-%d %a %I:%M %p',
+                    foreground=fg_color,
+                ),
+                widget.Sep(foreground=fg_color, padding=5),
+                #widget.Bluetooth(),
+                widget.Systray(),
+                widget.Battery(),
+                widget.QuickExit(foreground=warn_color),
+            ],
+            24,
+            background=bg_color,
+        ),
+    ),
 ]
 
 # Drag floating layouts.
