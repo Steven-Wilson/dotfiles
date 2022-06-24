@@ -1,29 +1,51 @@
 sudo pacman -Syu
 sudo pacman -S \
-    git \
-    feh \
-    mpv \
-    picom \
-    rofi \
-    qtile \
-    herbstluftwm \
-    neovim \
+    calc \
     dunst \
+    feh \
     fish \
+    git \
+    herbstluftwm \
+    i3-gaps \
+    mpv \
+    neovim \
+    nerd-fonts-terminus \
+    networkmanager-dmenu \
+    noto-fonts \
+    pass \
+    picom \
+    polybar \
+    poppler \
+    python-pywal \
+    qtile \
+    ranger \
+    rofi \
+    rsync \
+    ttf-droid \
+    ttf-fantasque-sans-mono \
+    ttf-icomoon-icons \
+    ttf-iosevka-nerd \
+    ttf-material-design-icons-webfont \
+    ttf-nerd-fonts-symbols \
+    w3m \
     wine \
-    winetricks \
     wine-gecko \
     wine-mono \
-    ranger \
-    poppler \
-    w3m \
-    zathura \
-    zathura-pdf-poppler \
+    winetricks \
+    xclip \
     xdotool \
-    rsync \
-    pass
+    zathura \
+    zathura-pdf-poppler
 
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+
+
+cd $HOME
+git clone --depth=1 https://github.com/adi1090x/polybar-themes.git
+cd polybar-themes
+chmod +x setup.sh
+./setup.sh
+
 
 mkdir -p \
 	~/.config/dunst \
@@ -32,7 +54,9 @@ mkdir -p \
 	~/.config/qtile \
 	~/.config/rofi \
 	~/.config/herbstluftwm \
-	~/.config/xfce4/terminal
+	~/.config/xfce4/terminal \
+    ~/.config/i3 \
+    ~/.config/polybar
 
 ln -sf ~/dotfiles/.vimrc ~/.vimrc
 ln -sf ~/dotfiles/.profile ~/.profile
@@ -47,4 +71,6 @@ ln -sf ~/dotfiles/.config/rofi/config.rasi ~/.config/rofi/config.rasi
 ln -sf ~/dotfiles/.config/rofi/one-dark.rasi ~/.config/rofi/one-dark.rasi
 ln -sf ~/dotfiles/.config/xfce4/terminal/terminalrc ~/.config/xfce4/terminal/terminalrc
 ln -sf ~/dotfiles/.config/herbstluftwm/autostart ~/.config/herbstluftwm/autostart
+ln -sf ~/dotfiles/.config/i3/config ~/.config/i3/config
+ln -sf ~/dotfiles/.config/polybar/launch.sh ~/.config/polybar/launch.sh
 

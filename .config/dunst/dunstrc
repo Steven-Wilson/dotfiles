@@ -31,7 +31,7 @@
     origin = top-right
 
     # Offset from the origin
-    offset = 20x20
+    offset = 550x50
 
     # Scale factor. It is auto-detected if value is 0.
     scale = 0
@@ -71,7 +71,7 @@
     # Draw a line of "separator_height" pixel height between two
     # notifications.
     # Set to 0 to disable.
-    separator_height = 10
+    separator_height = 0
 
     # Padding between text and separator.
     padding = 8
@@ -338,16 +338,34 @@
     timeout = 0
 
 
-
-# Every section that isn't one of the above is interpreted as a rules to
-
-
 [evtest]
-    appname = "EQimportant"
-    background = "#009921bb"
-    foreground = "#ffffff"
-    frame_color = "#009922bb"
+    appname = "EQUrgent"
+    background = "#282c34"
+    foreground = "#e06c75"
+    frame_color = "#e06c75"
     timeout = 8
+
+[evtest2]
+    appname = "EQWarning"
+    background = "#282c34"
+    foreground = "#e5c07b"
+    frame_color = "#e5c07b"
+    timeout = 8
+
+[evtest3]
+    appname = "EQTell"
+    background = "#282c34"
+    foreground = "#c678dd"
+    frame_color = "#c678dd"
+    timeout = 8
+
+[evtest4]
+    appname = "EQNotification"
+    background = "#282c34"
+    foreground = "#abb2bf"
+    frame_color = "#abb2bf"
+    timeout = 8
+
 
 [eqrule]
     appname = "EQ*"

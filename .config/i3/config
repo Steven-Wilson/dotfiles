@@ -1,0 +1,133 @@
+# I3 Configuration Settings
+
+set $mod Mod4
+floating_modifier $mod
+font pango:monospace 8
+default_border pixel 3
+default_floating_border pixel 0
+
+
+# Rules
+
+for_window [floating] border none
+for_window [tiling] border pixel 3
+
+# Workspaces
+
+set $ws1 "1"
+workspace $ws1 output DP-0
+
+set $ws2 "2"
+workspace $ws2 output DP-0
+
+set $ws3 "3"
+workspace $ws3 output DP-0
+
+set $ws4 "4"
+workspace $ws4 output DP-0
+
+set $ws5 "5"
+workspace $ws5 output DP-0
+
+set $ws6 "6"
+workspace $ws6 output DP-0
+
+set $ws7 "7"
+workspace $ws7 output DP-2
+
+set $ws8 "8"
+workspace $ws8 output DP-2
+
+set $ws9 "9"
+workspace $ws9 output DP-2
+
+set $ws10 "10"
+workspace $ws10 output DP-2
+
+
+# Keybindings
+
+bindsym $mod+Shift+e exec i3-msg exit
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+q kill
+
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+bindsym $mod+Right split h
+bindsym $mod+Down split v
+
+bindsym $mod+f fullscreen toggle
+bindsym $mod+Shift+space floating toggle
+
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
+
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        bindsym h resize shrink width 10 px or 1 ppt
+        bindsym j resize grow height 10 px or 1 ppt
+        bindsym k resize shrink height 10 px or 1 ppt
+        bindsym l resize grow width 10 px or 1 ppt
+
+        # back to normal: Enter or Escape or $mod+r
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+bindsym $mod+r mode "resize"
+
+
+# Colors
+
+set $bg_color "#282C34"
+set $fg_color "#ABB2BF"
+set $accent_color "#61AFEF"
+set $accent_color2 "#C678DD"
+set $accent_color3 "#56B6C2"
+set $good_color "#98C379"
+set $warn_color "#E5C07B"
+set $error_color "#E06C75"
+
+
+# class                 border        backgr.   text      indicator     child_border
+client.focused          $accent_color $bg_color $fg_color $accent_color $accent_color
+client.focused_inactive $fg_color     $bg_color $fg_color $fg_color     $fg_color
+client.unfocused        $fg_color     $bg_color $fg_color $fg_color     $fg_color
+client.urgent           $warn_color   $bg_color $fg_color $warn_color   $warn_color
+client.placeholder      $bg_color     $bg_color $fg_color $bg_color     $bg_color
+client.background       $bg_color
+
+
+# Startup stuff
+
+exec --no-startup-id dex --autostart --environment i3
+exec_always --no-startup-id startup.sh
+
+
