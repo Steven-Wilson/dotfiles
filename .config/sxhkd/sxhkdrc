@@ -1,0 +1,41 @@
+#
+# wm independent hotkeys
+#
+
+control + grave; r
+    pkill -usr1 -x sxhkd
+
+#
+# Applications
+#
+super + Return
+    xfce4-terminal -e fish
+
+super + shift + Return
+    xfce4-terminal
+
+super + d
+    rofi -modi drun -show drun
+
+super + shift + d
+    rofi -modi run -show run
+
+super + e
+    nautilus
+
+super + w
+    brave
+
+super + n
+    xfce4-terminal -e 'nvim -c :VimwikiIndex'
+
+#
+# i3-Specific
+#
+
+super + shift + p
+    i3-msg move scratchpad
+
+super + p
+    i3-msg scratchpad show
+

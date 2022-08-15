@@ -7,22 +7,22 @@ from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 
 
-@hook.subscribe.startup_once
+@hook.subscribe.startup
 def autostart():
-    subprocess.Popen('/home/steven/.config/qtile/autostart.sh')
+    subprocess.Popen('startup.sh')
 
 mod = "mod4"
 
 group_names = [
     "1. Main",
-    "2. Terminal",
+    "2. Side",
     "3. Web",
     "4. Files",
-    "5. Side 1",
-    "6. Side 2",
-    "7. Video",
-    "8. Comms",
-    "9. Music",
+    "5. Extra 1",
+    "6. Extra 2",
+    "7. Extra 3",
+    "8. Slack",
+    "9. Spotify",
     "0. Background",
 ]
 
@@ -41,19 +41,17 @@ keys = [
     Key([mod, "shift"], "l", lazy.layout.shuffle_right()),
     Key([mod, "shift"], "j", lazy.layout.shuffle_down()),
     Key([mod, "shift"], "k", lazy.layout.shuffle_up()),
+    Key([mod], "space", lazy.layout.swap_main()),
 
     # Resizing
-    Key([mod, "control"], "h", lazy.layout.grow_left()),
-    Key([mod, "control"], "l", lazy.layout.grow_right()),
-    Key([mod, "control"], "j", lazy.layout.grow_down()),
-    Key([mod, "control"], "k", lazy.layout.grow_up()),
-    Key([mod, "control"], "n", lazy.layout.normalize()),
+    Key([mod], "minus", lazy.layout.decrease_ratio()),
+    Key([mod], "equal", lazy.layout.increase_ratio()),
 
     # Layouts
-    Key([mod], "Tab", lazy.layout.next()),
-    Key([mod], "space", lazy.next_layout()),
+    Key([mod], "Tab", lazy.next_layout()),
     Key([mod, "shift"], "space", lazy.window.toggle_floating()),
     Key([mod], "f", lazy.window.toggle_fullscreen()),
+
     Key([mod, "shift"], "q", lazy.window.kill()),
     Key([mod, "shift"], "r", lazy.restart()),
     Key([mod, "shift"], "e", lazy.shutdown()),
@@ -82,36 +80,11 @@ keys = [
     Key([mod, "shift"], "9", lazy.window.togroup(group_names[8], switch_group=False)),
     Key([mod, "shift"], "0", lazy.window.togroup(group_names[9], switch_group=False)),
 
-    # Launch Programs
-    Key([mod], "w", lazy.spawn("brave")),
-    Key([mod], "Return", lazy.spawn("xfce4-terminal -e fish")),
-    Key([mod, "shift"], "Return", lazy.spawn("xfce4-terminal")),
-    Key([mod], "d", lazy.spawn("rofi -show drun -modi drun")),
-    Key([mod, "shift"], "d", lazy.spawn("rofi -show run -modi run")),
-    Key([mod], "e", lazy.spawn("thunar")),
-    Key([mod], "b", lazy.spawn("battery-status")),
-
-    Key([mod], "minus", lazy.spawn("decrease-brightness")),
-    Key([mod], "equal", lazy.spawn("increase-brightness")),
-
-    KeyChord([mod], "grave", [
-        KeyChord([], "r", [
-            Key([], "1", lazy.spawn("send_command assist")),
-            Key([], "2", lazy.spawn("send_command spread2")),
-            Key([], "3", lazy.spawn("send_command spread3")),
-            Key([], "4", lazy.spawn("send_command spread4")),
-        ]),
-        Key([], "q", lazy.spawn("send_command assist")),
-        Key([], "d", lazy.spawn("send_command nuke")),
-        Key([], "a", lazy.spawn("send_command back")),
-        Key([], "z", lazy.spawn("send_command sit")),
-        Key([], "f", lazy.spawn("send_command follow")),
-    ]),
-
 ]
 
 
 bg_color = "#282C34"
+alpha_bg_color = "#282C34AB"
 fg_color = "#ABB2BF"
 accent_color = "#61AFEF"
 accent_color2 = "#C678DD"
@@ -124,16 +97,25 @@ error_color = "#E06C75"
 
 
 layouts = [
-    layout.MonadTall(
-        border_focus=good_color,
+    layout.MonadThreeCol(
+        border_focus=accent_color,
         border_normal=fg_color,
         margin=9,
         border_width=3
     ),
-    layout.Matrix(
-        border_focus=good_color,
+    layout.MonadTall(
+        border_focus=accent_color,
         border_normal=fg_color,
-        margin=3,
+        margin=9,
+        border_width=3
+    ),
+    layout.Spiral(
+        new_client_position='bottom',
+        ratio=0.618,
+        ratio_increment=0.01,
+        border_focus=accent_color,
+        border_normal=fg_color,
+        margin=9,
         border_width=3
     ),
     layout.Max(),
@@ -142,7 +124,7 @@ layouts = [
 
 widget_defaults = dict(
     font='font-awesome',
-    fontsize=12,
+    fontsize=18,
     padding=3,
 )
 
@@ -175,17 +157,49 @@ screens = [
                 ),
                 widget.CurrentLayout(foreground=good_color),
                 widget.Sep(foreground=fg_color, padding=5),
+                widget.Systray(),
+                widget.Sep(foreground=fg_color, padding=5),
+                widget.Clock(
+                    format='%Y-%m-%d %a %I:%M %p',
+                    foreground=fg_color,
+                ),
+                #widget.QuickExit(foreground=warn_color),
+            ],
+            36,
+            background=bg_color,
+        ),
+    ),
+    Screen(
+        bottom=bar.Bar(
+            [
+                widget.GroupBox(
+                    borderwidth=2,
+                    active=accent_color,
+                    inactive=fg_color,
+                    foreground=accent_color,
+                    this_screen_border=accent_color,
+                    this_current_screen_border=accent_color,
+                    warn_color=warn_color,
+                    urgent_border=error_color,
+                ),
+                widget.WindowName(
+                    foreground=accent_color2,
+                ),
+                widget.Chord(
+                    chords_colors={
+                        'launch': (accent_color2,bg_color),
+                    },
+                    name_transform=lambda name: name.upper(),
+                ),
+                widget.CurrentLayout(foreground=good_color),
+                widget.Sep(foreground=fg_color, padding=5),
                 widget.Clock(
                     format='%Y-%m-%d %a %I:%M %p',
                     foreground=fg_color,
                 ),
                 widget.Sep(foreground=fg_color, padding=5),
-                #widget.Bluetooth(),
-                widget.Systray(),
-                widget.Battery(),
-                widget.QuickExit(foreground=warn_color),
             ],
-            24,
+            36,
             background=bg_color,
         ),
     ),

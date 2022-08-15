@@ -19,8 +19,8 @@ hc keyunbind --all
 Mod=Mod4   # Use the super key as the main modifier
 resizestep=0.02
 
-killall picom &
-picom -bcf --fade-in-step=1 --fade-out-step=1 --fade-delta=0 --inactive-opacity=1 --frame-opacity=1 --experimental-backends --vsync
+killall picom
+picom --fade-in-step=1 --fade-out-step=1 --fade-delta=0 --inactive-opacity=1 --frame-opacity=1 --experimental-backends --vsync &
 feh --bg-scale "$HOME/dotfiles/background.png"
 setxkbmap -option caps:super
 
@@ -36,74 +36,6 @@ error_color="#E06C75"
 hc keybind $Mod-Shift-e quit
 hc keybind $Mod-Shift-r reload
 hc keybind $Mod-Shift-q close
-
-
-hc keybind KP_Home spawn send_command heal Quikli
-hc keybind KP_Up spawn send_command heal Haettas
-hc keybind KP_Prior spawn send_command heal Deglaze
-
-hc keybind KP_Left spawn send_command heal Slowli
-hc keybind KP_Begin spawn send_command assist
-hc keybind KP_Right spawn send_command nuke
-
-hc keybind KP_End spawn send_command follow
-#hc keybind KP_Down spawn send_command follow
-#hc keybind KP_Next spawn send_command follow
-
-hc keybind KP_Insert spawn send_command sit
-hc keybind KP_Add spawn send_command melody
-
-
-# L1 - L4
-#hc keybind XF86Launch5 spawn /home/steven/bin/eq-assist.sh L1
-#hc keybind XF86Launch6 spawn /home/steven/bin/eq-assist.sh L2
-#hc keybind XF86Launch7 spawn /home/steven/bin/eq-assist.sh L3
-#hc keybind XF86Launch8 spawn /home/steven/bin/eq-assist.sh L4
-
-# M1 - M12
-#hc keybind XF86Launch1 spawn /home/steven/bin/eq-assist.sh M1
-#hc keybind XF86Launch2 spawn /home/steven/bin/eq-assist.sh M2
-#hc keybind XF86WWW spawn /home/steven/bin/eq-assist.sh M3
-#hc keybind XF86DOS spawn /home/steven/bin/eq-assist.sh M4
-#hc keybind XF86ScreenSaver spawn /home/steven/bin/eq-assist.sh M5
-#hc keybind XF86RotateWindows spawn /home/steven/bin/eq-assist.sh M6
-#hc keybind XF86TaskPane spawn /home/steven/bin/eq-assist.sh M7
-#hc keybind XF86Mail spawn /home/steven/bin/eq-assist.sh M8
-#hc keybind XF86Favorites spawn /home/steven/bin/eq-assist.sh M9
-#hc keybind XF86MyComputer spawn /home/steven/bin/eq-assist.sh M10
-#hc keybind XF86Back spawn /home/steven/bin/eq-assist.sh M11
-#hc keybind XF86Forward spawn /home/steven/bin/eq-assist.sh M12
-
-# MX1 - MX10
-#hc keybind XF86AudioMedia spawn /home/steven/bin/eq-assist.sh MX1
-#hc keybind XF86Display spawn /home/steven/bin/eq-assist.sh MX2
-#hc keybind XF86KbdLightOnOff spawn /home/steven/bin/eq-assist.sh MX3
-#hc keybind XF86KbdBrightnessDown spawn /home/steven/bin/eq-assist.sh MX4
-#hc keybind XF86KbdBrightnessUp spawn /home/steven/bin/eq-assist.sh MX5
-#hc keybind XF86Reply spawn /home/steven/bin/eq-assist.sh MX6
-#hc keybind XF86MailForward spawn /home/steven/bin/eq-assist.sh MX7
-#hc keybind XF86Save spawn /home/steven/bin/eq-assist.sh MX8
-#hc keybind XF86Documents spawn /home/steven/bin/eq-assist.sh MX9
-#hc keybind XF86Battery spawn /home/steven/bin/eq-assist.sh MX10
-
-# Diagonal Arrows left/right up
-#hc keybind XF86ScrollUp spawn /home/steven/bin/eq-assist.sh UPLEFT
-#hc keybind XF86ScrollDown spawn /home/steven/bin/eq-assist.sh UPRIGHT
-
-# Media Keys
-#hc keybind XF86AudioRaiseVolume spawn /home/steven/bin/eq-assist.sh RAISEVOLUME
-#hc keybind XF86AudioLowerVolume spawn /home/steven/bin/eq-assist.sh LOWERVOLUME
-#hc keybind XF86AudioMute spawn /home/steven/bin/eq-assist.sh MUTE
-#hc keybind XF86AudioPrev spawn /home/steven/bin/eq-assist.sh PREV
-#hc keybind XF86AudioNext spawn /home/steven/bin/eq-assist.sh NEXT
-#hc keybind XF86AudioPlay spawn /home/steven/bin/eq-assist.sh PLAY
-
-hc keybind $Mod-d spawn rofi -modi drun -show drun
-hc keybind $Mod-Shift-d spawn rofi -modi run -show run
-hc keybind $Mod-e spawn nautilus
-hc keybind $Mod-w spawn brave
-hc keybind $Mod-Return spawn xfce4-terminal -e fish
-hc keybind $Mod-Shift-Return spawn xfce4-terminal
 
 # basic movement in tiling and floating mode
 # focusing clients
@@ -204,13 +136,19 @@ hc set window_border_urgent_color $error_color
 
 hc set frame_bg_normal_color $bg_color
 hc set frame_bg_active_color $bg_color
-hc set frame_border_width 1
+hc set frame_border_width 0
 hc set always_show_frame on
 hc set frame_bg_transparent on
-hc set frame_transparent_width 5
-hc set frame_gap 4
+hc set frame_transparent_width 0
 
-hc set snap_gap 0
+hc set frame_gap 0
+hc set frame_padding 0
+hc set mouse_recenter_gap 0
+hc set smart_frame_surroundings on
+hc set smart_window_surroundings off
+hc set snap_gap 10
+hc set window_gap 6
+kc set focus_follows_mouse true
 
 hc attr theme.title_height 0
 hc attr theme.title_font 'Dejavu Sans:pixelsize=12'  # example using Xft
@@ -254,13 +192,6 @@ hc attr theme.floating.color $good_color
 hc attr theme.floating.inner_color $good_color
 hc attr theme.floating.outer_color $good_color
 
-hc set window_gap 0
-hc set frame_padding 0
-hc set smart_window_surroundings off
-hc set smart_frame_surroundings on
-hc set mouse_recenter_gap 0
-kc set focus_follows_mouse true
-
 # rules
 hc unrule -F
 #hc rule class=XTerm tag=3 # move all xterms to tag 3
@@ -291,11 +222,9 @@ hc detect_monitors
 
 
 # find the panel
-killall polybar &
+killall polybar
 ~/.config/polybar/launch.sh --shapes &
 
-killall sxhkd &
+killall sxhkd
 sxhkd &
-
-
 
