@@ -14,7 +14,7 @@ ln -sf ~/dotfiles/.vimrc ~/.vimrc
 ln -sf ~/dotfiles/.profile ~/.profile
 ln -sf ~/dotfiles/.tmux.conf ~/.tmux.conf
 ln -sf ~/dotfiles/.config/dunst/dunstrc ~/.config/dunst/dunstrc
-ln -sf ~/dotfiles/.config/fish/fish.config ~/.config/fish/fish.config
+ln -sf ~/dotfiles/.config/fish/config.fish ~/.config/fish/config.fish
 ln -sf ~/dotfiles/.config/fish/fish_variables ~/.config/fish/fish_variables
 ln -sf ~/dotfiles/.config/nvim/init.vim ~/.config/nvim/init.vim
 ln -sf ~/dotfiles/.config/rofi/config.rasi ~/.config/rofi/config.rasi
