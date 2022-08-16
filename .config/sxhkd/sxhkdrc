@@ -24,7 +24,7 @@ super + e
     nautilus
 
 super + w
-    brave
+    firefox
 
 super + n
     xfce4-terminal -e 'nvim -c :VimwikiIndex'
