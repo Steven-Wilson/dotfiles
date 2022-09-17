@@ -9,6 +9,7 @@ call plug#begin()
 "Plug 'dylanaraps/wal.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'dag/vim-fish'
 Plug 'vimwiki/vimwiki'
 Plug 'romgrk/doom-one.vim'
 Plug 'nvim-lua/popup.nvim'
@@ -19,6 +20,9 @@ Plug 'junegunn/fzf.vim'
 Plug 'michal-h21/vim-zettel'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'TimUntersberger/neogit'
+Plug 'andreadev-it/timetrap.nvim'
+Plug 'MunifTanjim/nui.nvim'
+Plug 'editorconfig/editorconfig-vim'
 
 call plug#end()
 
@@ -110,7 +114,9 @@ nnoremap <Leader><space> :nohl<CR>
 
 
 nnoremap <Leader>nn :ZettelNew<space>
-nnoremap <Leader>ni ggVGd:ZettelGenerateLinks<CR>
+nnoremap <Leader>nf :ZettelOpen<CR>
+nnoremap <Leader>np :ZettelInsertNote<CR>
+nnoremap <Leader>ni ggVGd:ZettelInbox<CR>
 
 nnoremap <Leader>- :sp<CR>
 nnoremap <Leader>\| :vs<CR>
@@ -172,6 +178,14 @@ set cursorline
 lua << EOF
 local async = require('plenary.async')
 local neogit = require('neogit')
+local timetrap = require('timetrap_nvim')
 neogit.setup()
+timetrap.setup({
+    display= {
+        win_type = "float",
+        border = "rounded",
+    },
+    prompts = "float"
+})
 EOF
 
