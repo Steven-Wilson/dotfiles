@@ -18,41 +18,37 @@ for_window [title="zoom.real "] floating enable, border none
 
 # Workspaces
 set $ws1 "Main"
-workspace $ws1 output DP-3
+workspace $ws1 output DP-0
 
 set $ws2 "Terminal"
-workspace $ws2 output DP-3
+workspace $ws2 output DP-0
 
 set $ws3 "Web"
-workspace $ws3 output DP-5
+workspace $ws3 output DP-0
 
-set $ws4 "Meeting"
-workspace $ws4 output DP-3
+set $ws4 "Boxes"
+workspace $ws4 output HDMI-0
 
-set $ws5 "Main 2"
-workspace $ws5 output DP-3
+set $ws5 "Reference"
+workspace $ws5 output HDMI-0
 
-set $ws6 "Web 2"
-workspace $ws6 output DP-5
+set $ws6 "Video"
+workspace $ws6 output HDMI-0
 
-set $ws7 "Email"
-workspace $ws7 output DP-1
+set $ws7 "Other"
+workspace $ws7 output HDMI-0
 
-set $ws8 "Slack"
-workspace $ws8 output DP-1
+set $ws8 "Discord"
+workspace $ws8 output HDMI-0
 
 set $ws9 "Spotify"
-workspace $ws9 output DP-1
+workspace $ws9 output DP-3
 
 set $ws10 "Background"
-workspace $ws10 output DP-3
+workspace $ws10 output DP-0
 
 
 # Keybindings
-
-bindsym $mod+Shift+e exec i3-msg exit
-bindsym $mod+Shift+r restart
-bindsym $mod+Shift+q kill
 
 bindsym $mod+h focus left
 bindsym $mod+j focus down

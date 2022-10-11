@@ -19,10 +19,6 @@ hc keyunbind --all
 Mod=Mod4   # Use the super key as the main modifier
 resizestep=0.02
 
-killall picom
-picom --fade-in-step=1 --fade-out-step=1 --fade-delta=0 --inactive-opacity=1 --frame-opacity=1 --experimental-backends --vsync &
-feh --bg-scale "$HOME/dotfiles/background.png"
-setxkbmap -option caps:super
 
 bg_color="#282C34"
 fg_color="#ABB2BF"
@@ -146,9 +142,9 @@ hc set frame_padding 0
 hc set mouse_recenter_gap 0
 hc set smart_frame_surroundings on
 hc set smart_window_surroundings off
-hc set snap_gap 10
+hc set snap_gap 0
 hc set window_gap 6
-kc set focus_follows_mouse true
+hc set focus_follows_mouse on
 
 hc attr theme.title_height 0
 hc attr theme.title_font 'Dejavu Sans:pixelsize=12'  # example using Xft
@@ -220,11 +216,5 @@ hc unlock
 # or simply:
 hc detect_monitors
 
-
-# find the panel
-killall polybar
-~/.config/polybar/launch.sh --shapes &
-
-killall sxhkd
-sxhkd &
+startup.sh
 
