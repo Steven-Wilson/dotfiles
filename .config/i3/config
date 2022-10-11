@@ -3,8 +3,8 @@
 set $mod Mod4
 floating_modifier $mod
 font pango:monospace 8
-default_border pixel 0
-default_floating_border pixel 0
+default_border pixel 5
+default_floating_border pixel 5
 smart_borders on
 smart_gaps on
 gaps inner 12
@@ -12,9 +12,11 @@ gaps inner 12
 
 # Rules
 
-for_window [floating] border pixel 0
-for_window [tiling] border pixel 0
+for_window [floating] border pixel 5
+for_window [tiling] border pixel 5
 for_window [title="zoom.real "] floating enable, border none
+for_window [class="sleek"] move window to scratchpad, scratchpad show
+for_window [class="Slack"] move window to scratchpad, scratchpad show
 
 # Workspaces
 set $ws1 "Main"
@@ -26,29 +28,36 @@ workspace $ws2 output DP-0
 set $ws3 "Web"
 workspace $ws3 output DP-0
 
-set $ws4 "Boxes"
-workspace $ws4 output HDMI-0
+set $ws4 "Meeting"
+workspace $ws4 output DP-0
 
-set $ws5 "Reference"
-workspace $ws5 output HDMI-0
+set $ws5 "Main 2"
+workspace $ws5 output DP-0
 
-set $ws6 "Video"
-workspace $ws6 output HDMI-0
+set $ws6 "Web 2"
+workspace $ws6 output DP-0
 
-set $ws7 "Other"
-workspace $ws7 output HDMI-0
+set $ws7 "Email"
+workspace $ws7 output DP-0
 
-set $ws8 "Discord"
+set $ws8 "Slack"
 workspace $ws8 output HDMI-0
 
 set $ws9 "Spotify"
-workspace $ws9 output DP-3
+workspace $ws9 output HDMI-0
 
 set $ws10 "Background"
-workspace $ws10 output DP-0
+workspace $ws10 output HDMI-0
 
 
 # Keybindings
+
+bindsym $mod+t [class="sleek"] scratchpad show
+bindsym $mod+s [class="Slack"] scratchpad show
+
+bindsym $mod+Shift+e exec i3-msg exit
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+q kill
 
 bindsym $mod+h focus left
 bindsym $mod+j focus down

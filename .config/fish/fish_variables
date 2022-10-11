@@ -2,6 +2,9 @@
 # VERSION: 3.0
 SETUVAR --export PYENV_ROOT:/home/swilson/\x2epyenv
 SETUVAR __fish_initialized:3400
+SETUVAR _fisher_edc_2F_bass_files:\x7e/\x2econfig/fish/functions/__bass\x2epy\x1e\x7e/\x2econfig/fish/functions/bass\x2efish
+SETUVAR _fisher_plugins:edc/bass
+SETUVAR _fisher_upgraded_to_4_4:\x1d
 SETUVAR fish_color_autosuggestion:brblack
 SETUVAR fish_color_cancel:\x2dr
 SETUVAR fish_color_command:brgreen
@@ -31,4 +34,4 @@ SETUVAR fish_pager_color_description:yellow
 SETUVAR fish_pager_color_prefix:white\x1e\x2d\x2dbold\x1e\x2d\x2dunderline
 SETUVAR fish_pager_color_progress:brwhite\x1e\x2d\x2dbackground\x3dcyan
 SETUVAR fish_pager_color_selected_background:\x2dr
-SETUVAR fish_user_paths:/home/swilson/\x2elocal/bin\x1e/home/swilson/\x2eemacs\x2ed/bin\x1e/opt/local/sbin\x1e/opt/local/bin\x1e/home/swilson/Repos/rmbx\x2dinfra\x2dtools/bin\x1e/usr/local/bin\x1e/opt/homebrew/bin\x1e/home/swilson/bin\x1e/home/swilson/\x2epyenv/bin
+SETUVAR fish_user_paths:/home/swilson/rmbx\x2dinfra\x2dtools/bin\x1e/home/swilson/\x2etfenv/bin\x1e/home/swilson/\x2elocal/bin\x1e/home/swilson/\x2eemacs\x2ed/bin\x1e/opt/local/sbin\x1e/opt/local/bin\x1e/home/swilson/Repos/rmbx\x2dinfra\x2dtools/bin\x1e/usr/local/bin\x1e/opt/homebrew/bin\x1e/home/swilson/bin\x1e/home/swilson/\x2epyenv/bin
