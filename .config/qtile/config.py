@@ -157,6 +157,7 @@ screens = [
                 ),
                 widget.CurrentLayout(foreground=good_color),
                 widget.Sep(foreground=fg_color, padding=5),
+                widget.Battery(),
                 widget.Systray(),
                 widget.Sep(foreground=fg_color, padding=5),
                 widget.Clock(

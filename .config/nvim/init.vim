@@ -7,6 +7,8 @@ set termguicolors
 call plug#begin()
 
 "Plug 'dylanaraps/wal.vim'
+Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'nvim-orgmode/orgmode'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'dag/vim-fish'
@@ -106,10 +108,6 @@ set ruler
 set title
 
 
-
-
-nnoremap <C-a> ggVG
-
 nnoremap <Leader><space> :nohl<CR>
 
 
@@ -148,18 +146,12 @@ nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 let g:vimwiki_list = [
     \ {
         \ 'path': '~/notes',
-        \ 'syntax': 'markdown',
-        \ 'ext': '.md',
         \ 'auto_tags': 1,
         \ 'auto_toc': 1 },
     \ ]
 
 let g:vimwiki_mouse = 1
 let g:vimwiki_auto_chdir = 1
-let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
-let g:vimwiki_markdown_link_ext = 1
-let g:taskwiki_markup_syntax = 'markdown'
-let g:markdown_folding = 1
 
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_match_window = 'bottom,order:ttb'
@@ -189,3 +181,27 @@ timetrap.setup({
 })
 EOF
 
+" init.vim
+lua << EOF
+
+-- Load custom tree-sitter grammar for org filetype
+require('orgmode').setup_ts_grammar()
+
+-- Tree-sitter configuration
+require'nvim-treesitter.configs'.setup {
+  -- If TS highlights are not enabled at all, or disabled via `disable` prop, highlighting will fallback to default Vim syntax highlighting
+  highlight = {
+    enable = true,
+    additional_vim_regex_highlighting = {'org'}, -- Required for spellcheck, some LaTex highlights and code block highlights that do not have ts grammar
+  },
+  ensure_installed = {'org'}, -- Or run :TSUpdate org
+}
+
+require('orgmode').setup({
+  org_agenda_files = {'~/Dropbox/org/*', '~/my-orgs/**/*'},
+  org_default_notes_file = '~/Dropbox/org/refile.org',
+})
+EOF
+
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()OF

@@ -61,3 +61,4 @@ if test -f $HOME/.config/fish/local.fish
     source $HOME/.config/fish/local.fish
 end
 
+fish_add_path $HOME/.local/share/gem/ruby/3.0.0/bin
