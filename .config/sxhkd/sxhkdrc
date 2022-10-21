@@ -1,6 +1,7 @@
 #
 # Applications
 #
+
 super + Return
     xfce4-terminal -e fish
 
@@ -12,6 +13,9 @@ super + d
 
 super + shift + d
     rofi -modi run -show run
+
+super + g
+    rofi -modi window -show window
 
 super + e
     nautilus
@@ -47,178 +51,41 @@ super + p
 #
 
 
-ctrl + grave; F1
-    send_command assist
+### Chorded EQ COMMANDS
 
-ctrl + grave; F2
-    notify-send "test" "F2"
+grave; h; p
+    send_command heal pets
 
-ctrl + grave; F3
-    notify-send "test" "F3"
+grave; h ; {y, u, i, h, j, k, n, m, comma, period, p}
+    send_command heal {quikli, haettas, deglaze, broil, saute, flambe, broil_pet, saute_pet, flambe_pet, slowli, pets}
 
-ctrl + grave; F4
-    notify-send "test" "F4"
-
-ctrl + grave; F5
-    notify-send "test" "F5"
-
-ctrl + grave; F6
-    notify-send "test" "F6"
-
-ctrl + grave; F7
-    notify-send "test" "F7"
-
-ctrl + grave; F8
-    notify-send "test" "F8"
-
-ctrl + grave; F9
-    notify-send "test" "F9"
-
-ctrl + grave; F10
-    notify-send "test" "F10"
-
-ctrl + grave; F11
-    notify-send "test" "F11"
-
-ctrl + grave; F12
-    notify-send "test" "F12"
-
-
-
-ctrl + grave; h; {h, b, d, s, f, q, p}
-    send_command heal {haettas, broil, deglaze, saute, flambe, quikli, pets}
-
-ctrl + grave; {f, s, q, a, n, x}
-    send_command "{follow, sit, assist, back, nuke, cancel}"
-
-# MX1
-XF86AudioMedia
-    send_command assist
-
-# MX6
-XF86Reply
-    send_command nuke
-
-# MX2 {MX1 - MX10} in L-R T-B order
-XF86Display; {XF86AudioMedia, XF86Reply, XF86Display, XF86MailForward, XF86KbdLightOnOff, XF86Save, XF86KbdBrightnessDown, XF86Documents, XF86KbdBrightnessUp, XF86Battery}
-    send_command heal {quikli, deglaze, broil, saute, flambe, haettas, slowli, broil_pet, saute_pet, flambe_pet}
-
-# MX7
-XF86MailForward
-    send_command heal
-
-# MX3
-XF86KbdLightOnOff
-    notify-send "test" "MX3"
-
-# MX8
-XF86Save
-    notify-send "test" "MX8"
-
-# MX4
-XF86KbdBrightnessDown
-    notify-send "test" "MX4"
-
-# MX9
-XF86Documents
-    notify-send "test" "MX9"
-
-# MX4
-XF86KbdBrightnessUp
+grave; f
     send_command follow
 
-# MX10
-XF86Battery
+grave; s
     send_command sit
 
+grave; t
+    send_command assist
 
-# L1-L4
-XF86Launch5
-    notify-send "test" "L1"
+grave; a
+    send_command back
 
-XF86Launch6
-    notify-send "test" "L2"
+grave; n
+    send_command nuke
 
-XF86Launch7
-    notify-send "test" "L3"
+grave; x
+    send_command cancel
 
-XF86Launch8
-    notify-send "test" "L4"
+grave; g
+    send_command spread
 
+grave; r
+    send_command snare
 
-# M1-M12
-XF86Launch1
-    notify-send "test" "M1"
+grave; k
+    send_command skin
 
-XF86Launch2
-    notify-send "test" "M2"
-
-XF86WWW
-    notify-send "test" "M3"
-
-XF86DOS
-    notify-send "test" "M4"
-
-XF86ScreenSaver
-    notify-send "test" "M5"
-
-XF86RotateWindows
-    notify-send "test" "M6"
-
-XF86TaskPane
-    notify-send "test" "M7"
-
-XF86Mail
-    notify-send "test" "M8"
-
-XF86Favorites
-    notify-send "test" "M9"
-
-XF86MyComputer
-    notify-send "test" "M10"
-
-XF86Back
-    notify-send "test" "M11"
-
-XF86Forward
-    notify-send "test" "M12"
-
-
-# Apex Arrow Angles
-XF86ScrollUp
-    notify-send "test" "Up &  Left"
-
-XF86ScrollDown
-    notify-send "test" "Up & Right"
-
-
-# Apex Media keys
-XF86AudioRaiseVolume
-    eq-mage-army
-
-XF86AudioLowerVolume
-    killall eq-mage-army
-
-XF86AudioMute
-    tail -f /home/quikli/games/eq/Logs/eqlog_Quikli_mischief.txt | log-to-line | eq-log-reader
-
-XF86AudioPrev
-    killall log-to-line
-
-XF86AudioNext
-    notify-send "test" "Next"
-
-XF86AudioPlay
-    notify-send "test" "Play"
-
-Print
-    notify-send "test" "Print"
-
-Scroll_Lock
-    notify-send "test" "ScrollLock"
-
-Pause
-    notify-send "test" "Pause"
 
 Num_Lock
     send_command assist
@@ -226,27 +93,33 @@ Num_Lock
 KP_Enter
     send_command sit
 
-KP_Home; {KP_Home, KP_Up, KP_Prior, KP_Left, KP_Begin, KP_Right, KP_End, KP_Down, KP_Next, KP_Insert}
-    send_command heal {quikli, deglaze, broil, saute, flambe, haettas, slowli, broil_pet, saute_pet, flambe_pet}
-    notify-send "test" "KP 7"
 
+### KEYPAD EQ COMMANDS
+
+# KP7
+KP_Home; {KP_Home, KP_Up, KP_Prior, KP_Left, KP_Begin, KP_Right, KP_End, KP_Down, KP_Next, KP_Insert}
+    send_command heal {quikli, haettas, deglaze, broil, saute, flambe, broil_pet, saute_pet, flambe_pet, slowli}
+
+# KP8
 KP_Up
     send_command back
 
+# KP9
 KP_Prior
-    send_command heal
+    send_command heal pets
 
+# KP4
 KP_Left
     send_command nuke
 
 KP_Begin
-    notify-send "test" "KP 5"
+    send_command skin
 
 KP_Right
-    notify-send "test" "KP 6"
+    send_command snare
 
 KP_End
-    notify-send "test" "KP 1"
+    send_command spread
 
 KP_Down
     notify-send "test" "KP 2"
