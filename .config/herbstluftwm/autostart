@@ -17,7 +17,7 @@ hc keyunbind --all
 # if you have a super key you will be much happier with Mod set to Mod4
 #Mod=Mod1    # Use alt as the main modifier
 Mod=Mod4   # Use the super key as the main modifier
-resizestep=0.02
+resizestep=0.03
 
 
 bg_color="#282C34"
@@ -80,8 +80,8 @@ done
 
 # layouting
 hc keybind $Mod-r remove
-hc keybind $Mod-Shift-space floating toggle
-hc keybind $Mod-f fullscreen toggle
+hc keybind $Mod-Shift-space attr clients.focus.floating toggle
+hc keybind $Mod-f attr clients.focus.fullscreen toggle
 
 #hc keybind $Mod-Shift-f set_attr clients.focus.floating toggle
 #hc keybind $Mod-Shift-m set_attr clients.focus.minimized true
@@ -129,57 +129,56 @@ hc set window_border_urgent_color $error_color
 
 hc set frame_bg_normal_color $bg_color
 hc set frame_bg_active_color $bg_color
-hc set frame_border_width 0
-hc set always_show_frame on
+hc set always_show_frame off
 hc set frame_bg_transparent on
 hc set frame_transparent_width 0
 
 hc set frame_gap 0
+hc set frame_border_width 0
 hc set frame_padding 0
 hc set mouse_recenter_gap 0
 hc set smart_frame_surroundings on
-hc set smart_window_surroundings off
-hc set snap_gap 6
-hc set window_gap 6
+hc set smart_window_surroundings on
+hc set snap_gap 0
+hc set window_gap 10
 hc set focus_follows_mouse on
+
+hc set tree_style '╾│ ├└╼─┐'
+hc set hide_covered_windows true
+hc set default_frame_layout grid
 
 hc attr theme.title_height 0
 hc attr theme.title_font 'Dejavu Sans:pixelsize=12'  # example using Xft
 # hc attr theme.title_font '-*-fixed-medium-r-*-*-13-*-*-*-*-*-*-*'
+#
 hc attr theme.padding_top 0  # space below the title's baseline (i.e. text depth0
 
 hc attr theme.color $bg_color
 
 hc attr theme.border_width 3
-hc attr theme.outer_width 0
+hc attr theme.outer_border_width 3
 hc attr theme.background_color $bg_color
 hc attr theme.color $bg_color
 hc attr theme.inner_color $bg_color
 hc attr theme.outer_color $bg_color
 
-hc attr theme.active.border_width 3
-hc attr theme.active.outer_width 0
 hc attr theme.active.background_color $accent_color2
 hc attr theme.active.color $accent_color2
 hc attr theme.active.inner_color $accent_color2
 hc attr theme.active.outer_color $accent_color2
 
-hc attr theme.active.border_width 3
-hc attr theme.active.outer_width 0
 hc attr theme.normal.background_color $fg_color
 hc attr theme.normal.color $fg_color
 hc attr theme.normal.inner_color $fg_color
 hc attr theme.normal.outer_color $fg_color
 
-hc attr theme.urgent.border_width 3
-hc attr theme.urgent.outer_width 0
 hc attr theme.urgent.background_color $error_color
 hc attr theme.urgent.color $error_color
 hc attr theme.urgent.inner_color $error_color
 hc attr theme.urgent.outer_color $error_color
 
 hc attr theme.floating.border_width 0
-hc attr theme.floating.outer_width 0
+hc attr theme.floating.outer_border_width 0
 hc attr theme.floating.background_color $good_color
 hc attr theme.floating.color $good_color
 hc attr theme.floating.inner_color $good_color
@@ -196,8 +195,6 @@ hc rule floatplacement=smart
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' floating=on
 hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
-
-hc set tree_style '╾│ ├└╼─┐'
 
 # unlock, just to be sure
 hc unlock
