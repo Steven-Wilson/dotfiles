@@ -110,11 +110,8 @@ hc mousebind $Mod-Button2 zoom
 hc mousebind $Mod-Button3 resize
 
 # focus
-hc keybind $Mod-BackSpace   cycle_monitor
-hc keybind $Mod-Tab         cycle_all +1
-hc keybind $Mod-Shift-Tab   cycle_all -1
-hc keybind $Mod-c cycle
-hc keybind $Mod-i jumpto urgent
+hc keybind $Mod-Tab         cycle +1
+hc keybind $Mod-Shift-Tab   cycle -1
 
 # theme
 hc attr theme.tiling.reset 1
@@ -142,7 +139,7 @@ hc set frame_padding 0
 hc set mouse_recenter_gap 0
 hc set smart_frame_surroundings on
 hc set smart_window_surroundings off
-hc set snap_gap 0
+hc set snap_gap 6
 hc set window_gap 6
 hc set focus_follows_mouse on
 
