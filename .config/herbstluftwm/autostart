@@ -80,7 +80,7 @@ done
 
 # layouting
 hc keybind $Mod-r remove
-hc keybind $Mod-Shift-space attr clients.focus.floating toggle
+hc keybind $Mod-Shift-space floating toggle
 hc keybind $Mod-f attr clients.focus.fullscreen toggle
 
 #hc keybind $Mod-Shift-f set_attr clients.focus.floating toggle
@@ -138,7 +138,7 @@ hc set frame_border_width 0
 hc set frame_padding 0
 hc set mouse_recenter_gap 0
 hc set smart_frame_surroundings on
-hc set smart_window_surroundings on
+hc set smart_window_surroundings off
 hc set snap_gap 0
 hc set window_gap 10
 hc set focus_follows_mouse on

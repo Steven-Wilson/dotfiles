@@ -8,7 +8,6 @@ call plug#begin()
 
 "Plug 'dylanaraps/wal.vim'
 Plug 'nvim-treesitter/nvim-treesitter'
-Plug 'nvim-orgmode/orgmode'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'dag/vim-fish'
@@ -19,12 +18,8 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
-Plug 'michal-h21/vim-zettel'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'TimUntersberger/neogit'
-Plug 'andreadev-it/timetrap.nvim'
-Plug 'MunifTanjim/nui.nvim'
-Plug 'editorconfig/editorconfig-vim'
 
 call plug#end()
 
@@ -38,7 +33,7 @@ syntax on
 let mapleader=" "
 
 set background=dark
-colorscheme doom-one
+colorscheme rhumbix-one
 
 set ignorecase
 set hlsearch
@@ -146,6 +141,8 @@ nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 let g:vimwiki_list = [
     \ {
         \ 'path': '~/notes',
+        \ 'syntax': 'markdown',
+        \ 'ext': '.md',
         \ 'auto_tags': 1,
         \ 'auto_toc': 1 },
     \ ]
@@ -170,38 +167,5 @@ set cursorline
 lua << EOF
 local async = require('plenary.async')
 local neogit = require('neogit')
-local timetrap = require('timetrap_nvim')
-neogit.setup()
-timetrap.setup({
-    display= {
-        win_type = "float",
-        border = "rounded",
-    },
-    prompts = "float"
-})
 EOF
 
-" init.vim
-lua << EOF
-
--- Load custom tree-sitter grammar for org filetype
-require('orgmode').setup_ts_grammar()
-
--- Tree-sitter configuration
-require'nvim-treesitter.configs'.setup {
-  -- If TS highlights are not enabled at all, or disabled via `disable` prop, highlighting will fallback to default Vim syntax highlighting
-  highlight = {
-    enable = true,
-    additional_vim_regex_highlighting = {'org'}, -- Required for spellcheck, some LaTex highlights and code block highlights that do not have ts grammar
-  },
-  ensure_installed = {'org'}, -- Or run :TSUpdate org
-}
-
-require('orgmode').setup({
-  org_agenda_files = {'~/Dropbox/org/*', '~/my-orgs/**/*'},
-  org_default_notes_file = '~/Dropbox/org/refile.org',
-})
-EOF
-
-set foldmethod=expr
-set foldexpr=nvim_treesitter#foldexpr()OF

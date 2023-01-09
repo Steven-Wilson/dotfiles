@@ -53,40 +53,6 @@ super + p
 
 ### Chorded EQ COMMANDS
 
-grave; h; p
-    send_command heal pets
-
-grave; h ; {y, u, i, h, j, k, n, m, comma, period, p}
-    send_command heal {quikli, haettas, deglaze, broil, saute, flambe, broil_pet, saute_pet, flambe_pet, slowli, pets}
-
-grave; f
-    send_command follow
-
-grave; s
-    send_command sit
-
-grave; t
-    send_command assist
-
-grave; a
-    send_command back
-
-grave; n
-    send_command nuke
-
-grave; x
-    send_command cancel
-
-grave; g
-    send_command spread
-
-grave; r
-    send_command snare
-
-grave; k
-    send_command skin
-
-
 Num_Lock
     send_command assist
 
