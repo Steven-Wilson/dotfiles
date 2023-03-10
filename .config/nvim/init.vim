@@ -20,6 +20,7 @@ Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'TimUntersberger/neogit'
+Plug 'Pocco81/auto-save.nvim'
 
 call plug#end()
 
@@ -33,7 +34,7 @@ syntax on
 let mapleader=" "
 
 set background=dark
-colorscheme rhumbix-one
+colorscheme doom-one
 
 set ignorecase
 set hlsearch
