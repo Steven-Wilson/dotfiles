@@ -32,7 +32,6 @@ if status is-interactive
     set -gx fish_greeting
     set -gx EDITOR nvim
     set -gx VISUAL nvim
-    alias pw='pass show -c'
     alias ls='ls -lh'
 end
 
@@ -56,9 +55,8 @@ function fish_prompt
     end
 end
 
+fish_add_path $HOME/.local/bin
+fish_add_path $HOME/.nimble/bin
 
-if test -f $HOME/.config/fish/local.fish
-    source $HOME/.config/fish/local.fish
-end
+source $HOME/venv/bin/activate.fish
 
-fish_add_path $HOME/.local/share/gem/ruby/3.0.0/bin

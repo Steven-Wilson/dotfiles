@@ -186,40 +186,33 @@ hc attr theme.floating.outer_color $good_color
 
 # rules
 hc unrule -F
-#hc rule class=XTerm tag=3 # move all xterms to tag 3
-hc rule focus=on # normally focus new clients
+hc rule class=Discord tag=8
+hc rule focus=on
 hc rule floatplacement=smart
-#hc rule focus=off # normally do not focus new clients
-# give focus to most common terminals
-#hc rule class~'(.*[Rr]xvt.*|.*[Tt]erm|Konsole)' focus=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' floating=on
 hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
 
-
-xrandr --output DP-2 --mode 3840x1600 --refresh 144.00 --dpi 93 --primary
-
-# unlock, just to be sure
+#xrandr --output DP-2 --mode 3840x1600 --refresh 144.00 --dpi 93 --primary
 hc unlock
-
-# do multi monitor setup here, e.g.:
-#hc set_monitors 498x1600+0+0 2844x1600+498+0 498x1600+3342+0
-#hc set_monitors 2844x1600+0+0 996x1600+2844+0 3840x560+0+1600
-#hc set_monitors 3840x2160+0+0
-# hc set_monitors 3840x1600+0+0
-#hc set_monitors 960x1600+0+0 1920x1600+960+0 960x1600+2880+0
-#hc set_monitors 1920x1080+0+0 1920x1080+1920+0
-#hc set_monitors 1920x1080+0+0
-# or simply:
 hc detect_monitors
 
-feh --bg-fill "$HOME/dotfiles/art.jpeg" &
+feh --bg-scale "$HOME/dotfiles/background.png" &
+
 setxkbmap -option caps:super
 
 xset -dpms &
 xset s off &
 
+killall picom
+picom &
+
+killall polybar
+~/.config/polybar/launch.sh --shapes &
+
 killall sxhkd
 sxhkd &
+
+light -N 5
 
 

@@ -7,6 +7,12 @@ set termguicolors
 call plug#begin()
 
 "Plug 'dylanaraps/wal.vim'
+Plug 'ziglang/zig.vim'
+Plug 'psf/black', { 'branch': 'stable' }
+Plug 'dense-analysis/ale'
+"Plug 'zah/nim.vim'
+Plug 'alaviss/nim.nvim'
+Plug 'scrooloose/syntastic'
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -137,10 +143,20 @@ nnoremap <Leader>j :wincmd j<CR>
 nnoremap <Leader>k :wincmd k<CR>
 nnoremap <Leader>l :wincmd l<CR>
 
+nnoremap <leader>b :ALEFix<CR>
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
+tnoremap <Leader>[ <C-\><C-n>:bprevious<CR>
+tnoremap <Leader>] <C-\><C-n>:bnext<CR>
+tnoremap <Leader>h <C-\><C-n>:wincmd h<CR>
+tnoremap <Leader>j <C-\><C-n>:wincmd j<CR>
+tnoremap <Leader>k <C-\><C-n>:wincmd k<CR>
+tnoremap <Leader>l <C-\><C-n>:wincmd l<CR>
+
+
+let g:ale_fixers = ['black']
 let g:vimwiki_list = [
     \ {
         \ 'path': '~/notes',
@@ -172,4 +188,7 @@ local async = require('plenary.async')
 local neogit = require('neogit')
 require('telescope').setup{ defaults = { file_ignore_patterns = { "__pycache__" } } }
 EOF
+
+autocmd TermOpen * startinsert
+autocmd BufWinEnter,WinEnter term://* startinsert
 
