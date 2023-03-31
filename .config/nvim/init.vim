@@ -119,9 +119,11 @@ nnoremap <Leader>q ZZ<CR>
 
 nnoremap <Leader>r :source ~/.config/nvim/init.vim<CR>
 nnoremap <Leader>s :w<CR>
-nnoremap <Leader>a ggVG
-nnoremap <Leader>d :bdelete<CR>
+onoremap <Leader>a ggVG
+nnoremap <Leader>d :bd<CR>
 nnoremap <Leader>g :Neogit<CR>
+nnoremap <C-K> :m -2<CR>
+nnoremap <C-J> :m +1<CR>
 
 " Navigate Through buffers
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
@@ -168,5 +170,6 @@ set cursorline
 lua << EOF
 local async = require('plenary.async')
 local neogit = require('neogit')
+require('telescope').setup{ defaults = { file_ignore_patterns = { "__pycache__" } } }
 EOF
 

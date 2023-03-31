@@ -3,10 +3,10 @@
 #
 
 super + Return
-    xfce4-terminal -e fish
+    alacritty -e fish
 
 super + shift + Return
-    xfce4-terminal
+    alacritty
 
 super + d
     rofi -modi drun -show drun
@@ -18,13 +18,13 @@ super + g
     rofi -modi window -show window
 
 super + e
-    nautilus
+    thunar
 
 super + w
     firefox
 
 super + n
-    xfce4-terminal -e 'nvim -c :VimwikiIndex'
+    alacritty -e 'nvim -c :VimwikiIndex'
 
 #
 # i3-Specific

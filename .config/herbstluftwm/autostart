@@ -100,7 +100,7 @@ hc keybind $Mod-p pseudotile toggle
 # I.e. if there are two windows within a frame, the grid layout is skipped.
 hc keybind $Mod-space                                                           \
             or , and . compare tags.focus.curframe_wcount = 2                   \
-                     . cycle_layout +1 vertical horizontal max vertical grid    \
+                     . cycle_layout +1 grid horizontal vertical max \
                , cycle_layout +1
 
 # mouse
@@ -196,6 +196,9 @@ hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' floating=on
 hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
 
+
+xrandr --output DP-2 --mode 3840x1600 --refresh 144.00 --dpi 93 --primary
+
 # unlock, just to be sure
 hc unlock
 
@@ -210,5 +213,13 @@ hc unlock
 # or simply:
 hc detect_monitors
 
-startup.sh
+feh --bg-fill "$HOME/dotfiles/art.jpeg" &
+setxkbmap -option caps:super
+
+xset -dpms &
+xset s off &
+
+killall sxhkd
+sxhkd &
+
 
