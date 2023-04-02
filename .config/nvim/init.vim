@@ -6,12 +6,8 @@ set termguicolors
 
 call plug#begin()
 
-"Plug 'dylanaraps/wal.vim'
-Plug 'ziglang/zig.vim'
 Plug 'psf/black', { 'branch': 'stable' }
 Plug 'dense-analysis/ale'
-"Plug 'zah/nim.vim'
-Plug 'alaviss/nim.nvim'
 Plug 'scrooloose/syntastic'
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'vim-airline/vim-airline'
@@ -183,12 +179,12 @@ let g:airline_theme='onedark'
 set ff=unix
 set cursorline
 
+autocmd TermOpen,BufWinEnter,WinEnter term://* startinsert
+
+
 lua << EOF
 local async = require('plenary.async')
 local neogit = require('neogit')
 require('telescope').setup{ defaults = { file_ignore_patterns = { "__pycache__" } } }
 EOF
-
-autocmd TermOpen * startinsert
-autocmd BufWinEnter,WinEnter term://* startinsert
 

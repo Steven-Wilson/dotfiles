@@ -3,8 +3,8 @@
 set $mod Mod4
 floating_modifier $mod
 font pango:monospace 8
-default_border pixel 5
-default_floating_border pixel 5
+default_border pixel 3
+default_floating_border pixel 0
 smart_borders on
 smart_gaps on
 gaps inner 12
@@ -12,48 +12,42 @@ gaps inner 12
 
 # Rules
 
-for_window [floating] border pixel 5
-for_window [tiling] border pixel 5
-for_window [title="zoom.real "] floating enable, border none
-for_window [class="sleek"] move window to scratchpad, scratchpad show
-for_window [class="Slack"] move window to scratchpad, scratchpad show
+for_window [floating] border pixel 0
+for_window [tiling] border pixel 3
 
 # Workspaces
-set $ws1 "Main"
-workspace $ws1 output DP-0
+set $ws1 "Rogue One"
+workspace $ws1 output DP-3
 
-set $ws2 "Terminal"
-workspace $ws2 output DP-0
+set $ws2 "Terminator 2"
+workspace $ws2 output DP-3
 
-set $ws3 "Web"
-workspace $ws3 output DP-0
+set $ws3 "Three Musketeers"
+workspace $ws3 output DP-3
 
-set $ws4 "Meeting"
-workspace $ws4 output DP-0
+set $ws4 "The Fourth Wall"
+workspace $ws4 output DP-3
 
-set $ws5 "Main 2"
-workspace $ws5 output DP-0
+set $ws5 "Left 5"
+workspace $ws5 output DP-1
 
-set $ws6 "Web 2"
-workspace $ws6 output DP-0
+set $ws6 "Left 6"
+workspace $ws6 output DP-1
 
-set $ws7 "Email"
-workspace $ws7 output DP-0
+set $ws7 "Right 7"
+workspace $ws7 output DP-5
 
-set $ws8 "Slack"
-workspace $ws8 output HDMI-0
+set $ws8 "Right 8"
+workspace $ws8 output DP-5
 
-set $ws9 "Spotify"
-workspace $ws9 output HDMI-0
+set $ws9 "Right 9"
+workspace $ws9 output DP-5
 
-set $ws10 "Background"
-workspace $ws10 output HDMI-0
+set $ws10 "Sub Zero"
+workspace $ws10 output DP-3
 
 
 # Keybindings
-
-bindsym $mod+t [class="sleek"] scratchpad show
-bindsym $mod+s [class="Slack"] scratchpad show
 
 bindsym $mod+Shift+e exec i3-msg exit
 bindsym $mod+Shift+r restart
@@ -138,7 +132,7 @@ client.background       $bg_color
 bar {
 
     position top
-    font pango:Droid Sans Mono, FontAwesome 10
+    font pango:Droid Sans Mono, FontAwesome 12
     tray_output primary
 
     colors {

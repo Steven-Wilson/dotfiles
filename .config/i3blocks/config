@@ -9,24 +9,31 @@ border_bottom=2
 #label=🔈
 #command=
 
+#[battery]
+#command=acpi | cut -d ',' -f 2
+#label=⚡
+#instance=0
+#interval=30
+#color=#98C379
+#border=#98C379
+
 [mediaplayer]
 label=♫ 
-command=/home/swilson/i3blocks-contrib/mediaplayer/mediaplayer
+command=~/i3blocks-contrib/mediaplayer/mediaplayer
 instance=spotify
 interval=5
 signal=10
 color=#C678DD
 border=#C678DD
 
-[battery]
-command=acpi | cut -d ',' -f 2
-label=⚡
-instance=0
-interval=30
-color=#98C379
-border=#98C379
+[text]
+command=~/.local/bin/random_quote
+interval=60
+color=#C678DD
+border=#C678DD
 
 [time]
+label= 
 command=date '+%Y-%m-%d %l:%M:%S %p (%Z)'
 interval=1
 color=#61AFEF
