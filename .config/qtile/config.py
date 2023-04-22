@@ -17,16 +17,16 @@ def autostart():
 mod = "mod4"
 
 group_names = [
-    ".1.",
-    ".2.",
-    ".3.",
-    ".4.",
-    ".5.",
-    ".6.",
-    ".7.",
-    ".8.",
-    ".9.",
-    ".0.",
+    " 1 ",
+    " 2 ",
+    " 3 ",
+    " 4 ",
+    " 5 ",
+    " 6 ",
+    " 7 ",
+    " 8 ",
+    " 9 ",
+    " 0 ",
 ]
 
 groups = [Group(name) for name in group_names]
@@ -60,16 +60,16 @@ keys = [
     Key([mod, "shift"], "e", lazy.shutdown()),
 
     # Changing Group
-    Key([mod], "1", lazy.group[group_names[0]].toscreen()),
-    Key([mod], "2", lazy.group[group_names[1]].toscreen()),
-    Key([mod], "3", lazy.group[group_names[2]].toscreen()),
-    Key([mod], "4", lazy.group[group_names[3]].toscreen()),
-    Key([mod], "5", lazy.group[group_names[4]].toscreen()),
-    Key([mod], "6", lazy.group[group_names[5]].toscreen()),
-    Key([mod], "7", lazy.group[group_names[6]].toscreen()),
-    Key([mod], "8", lazy.group[group_names[7]].toscreen()),
-    Key([mod], "9", lazy.group[group_names[8]].toscreen()),
-    Key([mod], "0", lazy.group[group_names[9]].toscreen()),
+    Key([mod], "1", lazy.group[group_names[0]].toscreen(toggle=True)),
+    Key([mod], "2", lazy.group[group_names[1]].toscreen(toggle=True)),
+    Key([mod], "3", lazy.group[group_names[2]].toscreen(toggle=True)),
+    Key([mod], "4", lazy.group[group_names[3]].toscreen(toggle=True)),
+    Key([mod], "5", lazy.group[group_names[4]].toscreen(toggle=True)),
+    Key([mod], "6", lazy.group[group_names[5]].toscreen(toggle=True)),
+    Key([mod], "7", lazy.group[group_names[6]].toscreen(toggle=True)),
+    Key([mod], "8", lazy.group[group_names[7]].toscreen(toggle=True)),
+    Key([mod], "9", lazy.group[group_names[8]].toscreen(toggle=True)),
+    Key([mod], "0", lazy.group[group_names[9]].toscreen(toggle=True)),
 
     # Moving window to Group
     Key([mod, "shift"], "1", lazy.window.togroup(group_names[0], switch_group=False)),
@@ -84,7 +84,7 @@ keys = [
     Key([mod, "shift"], "0", lazy.window.togroup(group_names[9], switch_group=False)),
 
     Key([mod], "Return", lazy.spawn("xfce4-terminal -e fish")),
-    Key([mod, "shift"], "Return", lazy.spawn("xfce4-terminal -e /home/quikli/venv/bin/python -m xonsh")),
+    Key([mod, "shift"], "Return", lazy.spawn('xfce4-terminal -e "/home/quikli/venv/bin/python -m xonsh"')),
 
     Key([mod], "d", lazy.spawn("rofi -modi drun -show drun")),
     Key([mod, "shift"], "d", lazy.spawn("rofi -modi run -show run")),
@@ -180,12 +180,10 @@ screens = [
                     name_transform=lambda name: name.upper(),
                 ),
                 widget.CurrentLayout(foreground=good_color),
-                widget.Sep(foreground=fg_color, padding=5),
                 widget.Clock(
                     format='%Y-%m-%d %a %I:%M %p',
                     foreground=fg_color,
                 ),
-                widget.Sep(foreground=fg_color, padding=5),
             ],
             24,
             background=bg_color,
@@ -216,7 +214,6 @@ screens = [
                     name_transform=lambda name: name.upper(),
                 ),
                 widget.CurrentLayout(foreground=good_color),
-                widget.Sep(foreground=fg_color, padding=5),
                 widget.Systray(),
                 widget.Clock(
                     format='%Y-%m-%d %a %I:%M %p',
@@ -253,12 +250,10 @@ screens = [
                     name_transform=lambda name: name.upper(),
                 ),
                 widget.CurrentLayout(foreground=good_color),
-                widget.Sep(foreground=fg_color, padding=5),
                 widget.Clock(
                     format='%Y-%m-%d %a %I:%M %p',
                     foreground=fg_color,
                 ),
-                widget.Sep(foreground=fg_color, padding=5),
             ],
             24,
             background=bg_color,
