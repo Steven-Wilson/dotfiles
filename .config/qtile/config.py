@@ -17,16 +17,16 @@ def autostart():
 mod = "mod4"
 
 group_names = [
-    "1. Main",
-    "2. Side",
-    "3. Web",
-    "4. Files",
-    "5. Extra 1",
-    "6. Extra 2",
-    "7. Extra 3",
-    "8. Slack",
-    "9. Spotify",
-    "0. Background",
+    ".1.",
+    ".2.",
+    ".3.",
+    ".4.",
+    ".5.",
+    ".6.",
+    ".7.",
+    ".8.",
+    ".9.",
+    ".0.",
 ]
 
 groups = [Group(name) for name in group_names]
@@ -148,19 +148,19 @@ layouts = [
 
 widget_defaults = dict(
     font='font-awesome',
-    fontsize=18,
+    fontsize=14,
     padding=3,
 )
 
-
 extension_defaults = widget_defaults.copy()
-
 
 screens = [
     Screen(
         top=bar.Bar(
             [
                 widget.GroupBox(
+                    highlight_method="line",
+                    hide_unused=True,
                     borderwidth=2,
                     active=accent_color,
                     inactive=fg_color,
@@ -187,7 +187,7 @@ screens = [
                 ),
                 widget.Sep(foreground=fg_color, padding=5),
             ],
-            36,
+            24,
             background=bg_color,
         ),
     ),
@@ -195,6 +195,8 @@ screens = [
         top=bar.Bar(
             [
                 widget.GroupBox(
+                    highlight_method="line",
+                    hide_unused=True,
                     borderwidth=2,
                     active=accent_color,
                     inactive=fg_color,
@@ -216,14 +218,13 @@ screens = [
                 widget.CurrentLayout(foreground=good_color),
                 widget.Sep(foreground=fg_color, padding=5),
                 widget.Systray(),
-                widget.Sep(foreground=fg_color, padding=5),
                 widget.Clock(
                     format='%Y-%m-%d %a %I:%M %p',
                     foreground=fg_color,
                 ),
                 #widget.QuickExit(foreground=warn_color),
             ],
-            36,
+            24,
             background=bg_color,
         ),
     ),
@@ -231,6 +232,8 @@ screens = [
         top=bar.Bar(
             [
                 widget.GroupBox(
+                    highlight_method="line",
+                    hide_unused=True,
                     borderwidth=2,
                     active=accent_color,
                     inactive=fg_color,
@@ -257,7 +260,7 @@ screens = [
                 ),
                 widget.Sep(foreground=fg_color, padding=5),
             ],
-            36,
+            24,
             background=bg_color,
         ),
     ),
