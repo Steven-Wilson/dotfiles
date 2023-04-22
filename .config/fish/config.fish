@@ -56,7 +56,8 @@ function fish_prompt
 end
 
 fish_add_path $HOME/.local/bin
-fish_add_path $HOME/.nimble/bin
 
 source $HOME/venv/bin/activate.fish
+
+set -gx EQTRIGGERDIR $HOME/repos/everquest-audio-triggers/triggers
 

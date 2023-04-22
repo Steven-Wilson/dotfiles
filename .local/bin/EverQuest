@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+export WINEARCH=win64
+export WINEPREFIX=$HOME/.wine64
+cd ~/games/eq
+wine LaunchPad.exe >/dev/null 2>&1
