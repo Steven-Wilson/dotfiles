@@ -1,0 +1,5 @@
+# XONSH WEBCONFIG START
+$PROMPT = ' {BOLD_GREEN}{user}{RESET} in {INTENSE_PURPLE}{cwd}{RESET}\n ↪ '
+xontrib load vox
+# XONSH WEBCONFIG END
+
