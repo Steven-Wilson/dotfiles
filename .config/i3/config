@@ -16,34 +16,34 @@ for_window [floating] border pixel 0
 for_window [tiling] border pixel 3
 
 # Workspaces
-set $ws1 "Rogue One"
+set $ws1 ".1."
 workspace $ws1 output DP-3
 
-set $ws2 "Terminator 2"
+set $ws2 ".2."
 workspace $ws2 output DP-3
 
-set $ws3 "Three Musketeers"
+set $ws3 ".3."
 workspace $ws3 output DP-3
 
-set $ws4 "The Fourth Wall"
+set $ws4 ".4."
 workspace $ws4 output DP-3
 
-set $ws5 "Left 5"
+set $ws5 ".5."
 workspace $ws5 output DP-1
 
-set $ws6 "Left 6"
+set $ws6 ".6."
 workspace $ws6 output DP-1
 
-set $ws7 "Right 7"
+set $ws7 ".7."
 workspace $ws7 output DP-5
 
-set $ws8 "Right 8"
+set $ws8 ".8."
 workspace $ws8 output DP-5
 
-set $ws9 "Right 9"
+set $ws9 ".9."
 workspace $ws9 output DP-5
 
-set $ws10 "Sub Zero"
+set $ws10 ".10."
 workspace $ws10 output DP-3
 
 
