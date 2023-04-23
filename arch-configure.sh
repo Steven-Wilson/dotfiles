@@ -1,12 +1,12 @@
 mkdir -p ~/.local/bin
 
-ln -sf ~/.dotfiles/.local/bin/2-monitor.sh ~/.local/bin/2-monitor.sh
-ln -sf ~/.dotfiles/.local/bin/3-monitor.sh ~/.local/bin/3-monitor.sh
-ln -sf ~/.dotfiles/.local/bin/elecom.sh ~/.local/bin/elecom.sh
-ln -sf ~/.dotfiles/.local/bin/EverQuest ~/.local/bin/EverQuest
-ln -sf ~/.dotfiles/.local/bin/random_quote ~/.local/bin/random_quote
-ln -sf ~/.dotfiles/.local/bin/startup.sh ~/.local/bin/startup.sh
-ln -sf ~/.dotfiles/.local/bin/tablet.sh ~/.local/bin/tablet.sh
+ln -sf ~/dotfiles/.local/bin/2-monitor.sh ~/.local/bin/2-monitor.sh
+ln -sf ~/dotfiles/.local/bin/3-monitor.sh ~/.local/bin/3-monitor.sh
+ln -sf ~/dotfiles/.local/bin/elecom.sh ~/.local/bin/elecom.sh
+ln -sf ~/dotfiles/.local/bin/EverQuest ~/.local/bin/EverQuest
+ln -sf ~/dotfiles/.local/bin/random_quote ~/.local/bin/random_quote
+ln -sf ~/dotfiles/.local/bin/startup.sh ~/.local/bin/startup.sh
+ln -sf ~/dotfiles/.local/bin/tablet.sh ~/.local/bin/tablet.sh
 
 mkdir -p \
     ~/.config/dunst \
