@@ -93,7 +93,7 @@ keys = [
     Key([mod], "e", lazy.spawn("thunar")),
     Key([mod], "w", lazy.spawn("qutebrowser")),
 
-    KeyChord([], "grave", [
+    KeyChord(["control"], "grave", [
         Key([], "8", lazy.spawn("send_command invis")),
         Key([], "a", lazy.spawn("send_command back")),
         Key([], "f", lazy.spawn("send_command follow")),

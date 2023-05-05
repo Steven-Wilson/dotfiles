@@ -59,5 +59,6 @@ fish_add_path $HOME/.local/bin
 
 source $HOME/venv/bin/activate.fish
 
+set -gx PYTHONBREAKPOINT "pudb.set_trace"
 set -gx EQTRIGGERDIR $HOME/repos/everquest-audio-triggers/triggers
 

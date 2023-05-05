@@ -7,6 +7,7 @@ set termguicolors
 call plug#begin()
 
 Plug 'psf/black', { 'branch': 'stable' }
+Plug 'Tetralux/odin.vim'
 Plug 'dense-analysis/ale'
 Plug 'scrooloose/syntastic'
 Plug 'nvim-treesitter/nvim-treesitter'
@@ -85,7 +86,7 @@ set autoread
 
 set hidden
 set number
-set relativenumber
+set norelativenumber
 set backspace=indent,eol,start
 set showcmd
 set showmode
@@ -139,7 +140,7 @@ nnoremap <Leader>j :wincmd j<CR>
 nnoremap <Leader>k :wincmd k<CR>
 nnoremap <Leader>l :wincmd l<CR>
 
-nnoremap <leader>b :ALEFix<CR>
+nnoremap <leader>bb :!odin run .<CR>
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>

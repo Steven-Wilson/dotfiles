@@ -11,6 +11,7 @@ ln -sf ~/dotfiles/.local/bin/tablet.sh ~/.local/bin/tablet.sh
 mkdir -p \
     ~/.config/dunst \
     ~/.config/fish \
+    ~/.config/herbstluftwm \
     ~/.config/i3 \
     ~/.config/i3blocks \
     ~/.config/nvim \
@@ -21,6 +22,7 @@ mkdir -p \
 
 ln -sf ~/dotfiles/.config/dunst/dunstrc ~/.config/dunst/dunstrc
 ln -sf ~/dotfiles/.config/fish/config.fish ~/.config/fish/config.fish
+ln -sf ~/dotfiles/.config/herbstluftwm/autostart ~/.config/herbstluftwm/autostart
 ln -sf ~/dotfiles/.config/i3/config ~/.config/i3/config
 ln -sf ~/dotfiles/.config/i3blocks/config ~/.config/i3blocks/config
 ln -sf ~/dotfiles/.config/nvim/init.vim ~/.config/nvim/init.vim

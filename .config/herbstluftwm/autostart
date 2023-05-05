@@ -113,6 +113,17 @@ hc mousebind $Mod-Button3 resize
 hc keybind $Mod-Tab         cycle +1
 hc keybind $Mod-Shift-Tab   cycle -1
 
+
+hc keybind $Mod-Return spawn xfce4-terminal -e fish
+hc keybind $Mod-Shift-Return spawn xfce4-terminal -e "/home/quikli/venv/bin/python -m xonsh"
+
+hc keybind $Mod-d spawn rofi -modi drun -show drun
+hc keybind $Mod-Shift-d spawn rofi -modi run -show run
+hc keybind $Mod-g spawn rofi -modi window -show window
+
+hc keybind $Mod-e spawn thunar
+hc keybind $Mod-w spawn qutebrowser
+
 # theme
 hc attr theme.tiling.reset 1
 hc attr theme.floating.reset 1
@@ -193,7 +204,7 @@ hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' floating=on
 hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
 
-#xrandr --output DP-2 --mode 3840x1600 --refresh 144.00 --dpi 93 --primary
+xrandr --output DP-2 --mode 3840x1600 --refresh 144.00 --dpi 93 --primary
 hc unlock
 hc detect_monitors
 
@@ -204,15 +215,9 @@ setxkbmap -option caps:super
 xset -dpms &
 xset s off &
 
-killall picom
-picom &
-
-killall polybar
-~/.config/polybar/launch.sh --shapes &
-
 killall sxhkd
 sxhkd &
 
-light -N 5
-
+#killall picom
+#picom &
 
