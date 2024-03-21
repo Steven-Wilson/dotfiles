@@ -1,0 +1,85 @@
+[colors]
+foreground = #ABB2BF
+background = #000000AA
+modb = #000000AA
+modb1 = #000000AA
+modb2 = #000000AA
+accent_1 = #61AFEF
+accent_2 = #C678DD
+accent_3 = #56B6C2
+accent_4 = #98C379
+
+
+[global/wm]
+margin-top = 0
+margin-bottom = 0
+override-redirect = true
+
+
+[bar/top]
+width = 80%
+height = 32
+offset-x = 384
+offset-y = 10
+line-size = 3
+spacing = 1
+padding-left = 0
+padding-right = 0
+module-margin-left = 1
+module-margin-right = 1
+tray-position = right
+tray-padding = 2
+tray-transparent = false
+tray-detached = false
+tray-background = ${colors.modb}
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+font-0 = Fira Code:style=Regular:size=16;5
+font-1 = Material Icons:style=Regular:size=16;5
+
+modules-left = memory cpu pulseaudio
+modules-center = ewmh
+modules-right =   date
+
+
+[module/date]
+type = internal/date
+interval = 1
+date = "%Y-%m-%d %H:%M:%S"
+format-prefix-foreground = ${colors.accent_1}
+format-background = ${colors.modb}
+
+
+[module/ewmh]
+type = internal/xworkspaces
+enable-scroll = true
+format-foreground = ${colors.accent_2}
+format-background = ${colors.modb2}
+label-active = " ●"
+label-occupied = " ○"
+label-urgent = " ⚠"
+label-empty = " ·"
+
+
+[module/memory]
+type = internal/memory
+warn-percentage = 90
+format-prefix = "MEM: "
+format-foreground = ${colors.accent_1}
+
+
+[module/cpu]
+type = internal/cpu
+label = %percentage%%
+format-prefix = "CPU: "
+format-foreground = ${colors.accent_2}
+
+
+[module/pulseaudio]
+type = internal/pulseaudio
+label-volume = VOL: %percentage%%
+label-muted = 🔇 muted
+label-muted-foreground = #666
+click-right = pavucontrol
