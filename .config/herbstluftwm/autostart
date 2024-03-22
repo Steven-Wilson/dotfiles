@@ -20,14 +20,13 @@ Mod=Mod4   # Use the super key as the main modifier
 resizestep=0.03
 
 
-padding_color="#00000000"
 bg_color="#282C34"
 fg_color="#ABB2BF"
 accent_color="#61AFEF"
-accent_color2="#C678DD"
-accent_color3="#56B6C2"
+#accent_color2="#C678DD"
+#accent_color3="#56B6C2"
 good_color="#98C379"
-warn_color="#E5C07B"
+#warn_color="#E5C07B"
 error_color="#E06C75"
 
 hc keybind $Mod-Shift-e quit
@@ -129,12 +128,12 @@ hc keybind $Mod-w spawn google-chrome
 hc attr theme.tiling.reset 1
 hc attr theme.floating.reset 1
 
-hc set frame_border_active_color $accent_color2
+hc set frame_border_active_color $accent_color
 hc set frame_border_inner_color $bg_color
 hc set frame_border_normal_color $bg_color
 hc set frame_border_urgent_color $error_color
 
-hc set window_border_active_color $accent_color2
+hc set window_border_active_color $accent_color
 hc set window_border_inner_color $fg_color
 hc set window_border_normal_color $fg_color
 hc set window_border_urgent_color $error_color
@@ -146,13 +145,13 @@ hc set frame_bg_transparent on
 hc set frame_transparent_width 0
 
 hc set frame_gap 20
-hc set frame_border_width 0
-hc set frame_padding -20
+hc set frame_border_width 3
+hc set frame_padding 0
 hc set mouse_recenter_gap 0
 hc set smart_frame_surroundings on
 hc set smart_window_surroundings off
 hc set snap_gap 20
-hc set window_gap 20
+hc set window_gap 0
 hc set focus_follows_mouse on
 hc set tabbed_max on
 
@@ -166,8 +165,8 @@ hc attr theme.padding_top 0
 
 
 hc attr theme.color $bg_color
-hc attr theme.border_width 3
-hc attr theme.outer_border_width 3
+hc attr theme.border_width 0
+hc attr theme.outer_border_width 0
 hc attr theme.background_color $bg_color
 hc attr theme.inner_color $bg_color
 hc attr theme.outer_color $bg_color
@@ -176,10 +175,10 @@ hc attr theme.outer_color $bg_color
 #hc attr theme.padding_left 10
 #hc attr theme.padding_right 10
 
-hc attr theme.active.background_color $accent_color2
-hc attr theme.active.color $accent_color2
-hc attr theme.active.inner_color $accent_color2
-hc attr theme.active.outer_color $accent_color2
+hc attr theme.active.background_color $accent_color
+hc attr theme.active.color $accent_color
+hc attr theme.active.inner_color $accent_color
+hc attr theme.active.outer_color $accent_color
 
 hc attr theme.normal.background_color $fg_color
 hc attr theme.normal.color $fg_color
@@ -222,7 +221,7 @@ killall sxhkd
 sxhkd &
 
 killall picom
-picom &
+picom --vsync &
 
 killall polybar
 polybar -c "$HOME/.config/herbstluftwm/polybar" top &
