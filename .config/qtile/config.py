@@ -1,32 +1,30 @@
 import os
 import subprocess
 
-from typing import List  # noqa: F401
 from libqtile import bar, layout, widget, hook
-from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen
+from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
-from libqtile.utils import guess_terminal
 
 
 @hook.subscribe.startup_once
 def autostart():
-    startup_script = os.path.expanduser('~/.local/bin/startup.sh')
+    startup_script = os.path.expanduser('~/.local/bin/autostart')
     subprocess.Popen([startup_script])
 
 
 mod = "mod4"
 
 group_names = [
-    " 1 ",
-    " 2 ",
-    " 3 ",
-    " 4 ",
+    " 1 - Web ",
+    " 2 - Editor ",
+    " 3 - Services ",
+    " 4 - Git ",
     " 5 ",
     " 6 ",
     " 7 ",
-    " 8 ",
-    " 9 ",
-    " 0 ",
+    " 8 - Slack ",
+    " 9 - 1Pass ",
+    " 0 - Terminal ",
 ]
 
 groups = [Group(name) for name in group_names]
@@ -83,41 +81,16 @@ keys = [
     Key([mod, "shift"], "9", lazy.window.togroup(group_names[8], switch_group=False)),
     Key([mod, "shift"], "0", lazy.window.togroup(group_names[9], switch_group=False)),
 
-    Key([mod], "Return", lazy.spawn("xfce4-terminal -e fish")),
-    Key([mod, "shift"], "Return", lazy.spawn('xfce4-terminal -e "/home/quikli/venv/bin/python -m xonsh"')),
+    Key([mod], "Return", lazy.spawn("xfce4-terminal -e zsh")),
+    Key([mod, "shift"], "Return", lazy.spawn('xfce4-terminal -e "/home/quikli/venv/bin/python -m bash"')),
+    Key([mod], "p", lazy.spawn('flameshot gui')),
 
     Key([mod], "d", lazy.spawn("rofi -modi drun -show drun")),
     Key([mod, "shift"], "d", lazy.spawn("rofi -modi run -show run")),
     Key([mod], "g", lazy.spawn("rofi -modi window -show window")),
 
-    Key([mod], "e", lazy.spawn("thunar")),
-    Key([mod], "w", lazy.spawn("qutebrowser")),
-
-    KeyChord(["control"], "grave", [
-        Key([], "8", lazy.spawn("send_command invis")),
-        Key([], "a", lazy.spawn("send_command back")),
-        Key([], "f", lazy.spawn("send_command follow")),
-        KeyChord([], "h", [
-            Key([], "a", lazy.spawn("send_command heal_salmon")),
-            Key([], "b", lazy.spawn("send_command heal_broil")),
-            Key([], "c", lazy.spawn("send_command heal_chito")),
-            Key([], "d", lazy.spawn("send_command heal_deglaze")),
-            Key([], "g", lazy.spawn("send_command heal_group")),
-            Key([], "h", lazy.spawn("send_command heal_haettas")),
-            Key([], "p", lazy.spawn("send_command heal_puff")),
-            Key([], "q", lazy.spawn("send_command heal_quikli")),
-            Key([], "s", lazy.spawn("send_command heal_slowli")),
-        ]),
-        Key([], "k", lazy.spawn("send_command skin")),
-        Key([], "m", lazy.spawn("send_command mount")),
-        Key([], "n", lazy.spawn("send_command nuke")),
-        Key([], "p", lazy.spawn("send_command melody")),
-        Key([], "q", lazy.spawn("send_command assist")),
-        Key([], "r", lazy.spawn("send_command snare")),
-        Key([], "s", lazy.spawn("send_command spread")),
-        Key([], "t", lazy.spawn("send_command turn")),
-        Key([], "z", lazy.spawn("send_command sit")),
-    ]),
+    Key([mod], "e", lazy.spawn("nautilus")),
+    Key([mod], "w", lazy.spawn("google-chrome")),
 
 ]
 
@@ -133,10 +106,14 @@ warn_color = "#E5C07B"
 error_color = "#E06C75"
 
 
-
-
 layouts = [
     layout.Max(),
+    layout.MonadThreeCol(
+        border_focus=accent_color,
+        border_normal=fg_color,
+        margin=9,
+        border_width=3
+    ),
     layout.MonadTall(
         border_focus=accent_color,
         border_normal=fg_color,
@@ -175,81 +152,12 @@ screens = [
                 ),
                 widget.Chord(
                     chords_colors={
-                        'launch': (accent_color2,bg_color),
-                    },
-                    name_transform=lambda name: name.upper(),
-                ),
-                widget.CurrentLayout(foreground=good_color),
-                widget.Clock(
-                    format='%Y-%m-%d %a %I:%M %p',
-                    foreground=fg_color,
-                ),
-            ],
-            24,
-            background=bg_color,
-        ),
-    ),
-    Screen(
-        top=bar.Bar(
-            [
-                widget.GroupBox(
-                    highlight_method="line",
-                    hide_unused=True,
-                    borderwidth=2,
-                    active=accent_color,
-                    inactive=fg_color,
-                    foreground=accent_color,
-                    this_screen_border=accent_color,
-                    this_current_screen_border=accent_color,
-                    warn_color=warn_color,
-                    urgent_border=error_color,
-                ),
-                widget.WindowName(
-                    foreground=accent_color2,
-                ),
-                widget.Chord(
-                    chords_colors={
-                        'launch': (accent_color2,bg_color),
+                        'launch': (accent_color2, bg_color),
                     },
                     name_transform=lambda name: name.upper(),
                 ),
                 widget.CurrentLayout(foreground=good_color),
                 widget.Systray(),
-                widget.Clock(
-                    format='%Y-%m-%d %a %I:%M %p',
-                    foreground=fg_color,
-                ),
-                #widget.QuickExit(foreground=warn_color),
-            ],
-            24,
-            background=bg_color,
-        ),
-    ),
-    Screen(
-        top=bar.Bar(
-            [
-                widget.GroupBox(
-                    highlight_method="line",
-                    hide_unused=True,
-                    borderwidth=2,
-                    active=accent_color,
-                    inactive=fg_color,
-                    foreground=accent_color,
-                    this_screen_border=accent_color,
-                    this_current_screen_border=accent_color,
-                    warn_color=warn_color,
-                    urgent_border=error_color,
-                ),
-                widget.WindowName(
-                    foreground=accent_color2,
-                ),
-                widget.Chord(
-                    chords_colors={
-                        'launch': (accent_color2,bg_color),
-                    },
-                    name_transform=lambda name: name.upper(),
-                ),
-                widget.CurrentLayout(foreground=good_color),
                 widget.Clock(
                     format='%Y-%m-%d %a %I:%M %p',
                     foreground=fg_color,

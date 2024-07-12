@@ -3,17 +3,14 @@
 set $mod Mod4
 floating_modifier $mod
 font pango:monospace 8
-default_border pixel 3
-default_floating_border pixel 3
-smart_borders on
-smart_gaps on
-gaps inner 12
+default_border pixel 1
+default_floating_border pixel 1
 workspace_layout tabbed
 
 
-set $leftmon HDMI-1
-set $rightmon DP-3
-set $mainmon DP-4
+set $leftmon DP-3
+set $mainmon DP-5
+set $rightmon HDMI-0
 
 # Workspaces
 
@@ -56,14 +53,8 @@ workspace $right output $rightmon
 
 # Rules
 
-for_window [floating] border pixel 3
-for_window [tiling] border pixel 3
-for_window [class="zoom"] floating enable
-for_window [class="zoom" title="Zoom - Free Account"] floating disable
-for_window [class="zoom" title="Zoom Meeting"] floating disable
-for_window [class="firefox"] move container to $left
-
-assign [class="firefox"] $left
+for_window [floating] border pixel 1
+for_window [tiling] border pixel 1
 assign [class="Slack"] $right
 
 # Keybindings
@@ -71,11 +62,14 @@ assign [class="Slack"] $right
 bindsym $mod+Shift+e exec i3-msg exit
 bindsym $mod+Shift+r restart
 bindsym $mod+Shift+q kill
+bindsym $mod+p exec flameshot gui
 
-bindsym $mod+h focus output left
-bindsym $mod+j focus next sibling
-bindsym $mod+k focus prev sibling
-bindsym $mod+l focus output right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+bindsym $mod+Tab focus next sibling
+bindsym $mod+Shift+Tab focus prev sibling
 
 bindsym $mod+Shift+h move output left
 bindsym $mod+Shift+j move right
@@ -115,9 +109,9 @@ bindsym $mod+Shift+Mod1+l exec set-monitor-internal.sh
 
 bindsym $mod+b bar mode toggle
 
-bindsym $mod+w exec flatpak run org.mozilla.firefox
-bindsym $mod+e exec thunar
-bindsym $mod+Return exec xfce4-terminal -e fish
+bindsym $mod+w exec google-chrome-stable
+bindsym $mod+e exec nautilus
+bindsym $mod+Return exec xfce4-terminal -e zsh
 bindsym $mod+d exec rofi -modi drun -show drun
 bindsym $mod+g exec rofi -modi window -show window
 bindsym $mod+Shift+d exec rofi -modi run -show run
@@ -160,8 +154,8 @@ client.background       $bg_color
 
 bar {
 
-    position bottom
-    font pango:Droid Sans Mono, FontAwesome 12
+    position top
+    font pango:Droid Sans Mono, FontAwesome 10
     tray_output primary
 
     colors {
@@ -180,5 +174,5 @@ bar {
 
 }
 
-exec --no-startup-id /home/swilson/.local/bin/set-monitor.sh
+exec --no-startup-id /home/swilson/.screenlayout/hc-3-monitor.sh
 exec_always --no-startup-id /home/swilson/.local/bin/autostart
