@@ -21,13 +21,14 @@ vim.opt.rtp:prepend(pckr_path)
 
 require('pckr').add{
 	'vimwiki/vimwiki';
-	'romgrk/doom-one.vim';
+    'catppuccin/nvim';
 	'nvim-lua/popup.nvim';
 	'nvim-lua/plenary.nvim';
+	'NeogitOrg/neogit',
 	'nvim-telescope/telescope.nvim';
 	'junegunn/fzf';
 	'junegunn/fzf.vim';
-    "folke/zen-mode.nvim";
+    	"folke/zen-mode.nvim";
     { 'VonHeikemen/lsp-zero.nvim',
         branch = 'v3.x',
         requires = {
@@ -40,6 +41,9 @@ require('pckr').add{
         }
     };
 }
+
+local neogit = require('neogit')
+neogit.setup {}
 
 local async = require('plenary.async')
 require('telescope').setup{
@@ -67,6 +71,7 @@ require('mason-lspconfig').setup({
 -- Settings
 --
 
+vim.opt.background = "light"
 vim.opt.backspace = "indent,eol,start"
 vim.opt.wildmode = "list:longest"
 vim.opt.wildmenu = true
@@ -89,7 +94,7 @@ vim.opt.clipboard = "unnamedplus"
 vim.opt.history = 100
 
 -- Format options
-vim.cmd [[colorscheme doom-one]]
+vim.cmd.colorscheme "catppuccin-latte"
 vim.opt.ff = "unix"
 vim.opt.cursorline = true
 vim.opt.termguicolors = true
@@ -156,7 +161,7 @@ vim.keymap.set("n", "<Leader>c", "<cmd>edit ~/.config/nvim/init.lua<CR>")
 -- Save/Close/Select buffers
 vim.keymap.set("n", "<Leader>s", "<cmd>w<CR>")
 vim.keymap.set("n", "<Leader>a", "ggVG")
-vim.keymap.set("n", "<Leader>d", "<cmd>bp|bd #<CR>")
+vim.keymap.set("n", "<Leader>d", "<cmd>bd<CR>")
 vim.keymap.set("n", "<Leader>o", "<cmd>on<CR>")
 vim.keymap.set("n", "<Leader>q", "ZZ<CR>")
 
@@ -172,6 +177,9 @@ vim.keymap.set("n", "<A-h>", "<cmd>wincmd h<CR>")
 vim.keymap.set("n", "<A-j>", "<cmd>wincmd j<CR>")
 vim.keymap.set("n", "<A-k>", "<cmd>wincmd k<CR>")
 vim.keymap.set("n", "<A-l>", "<cmd>wincmd l<CR>")
+
+-- Neogit
+vim.keymap.set("n", "<leader>gg", "<cmd>Neogit<cr>")
 
 -- Fuzzy Find
 vim.keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>")
