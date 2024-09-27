@@ -21,14 +21,14 @@ vim.opt.rtp:prepend(pckr_path)
 
 require('pckr').add{
 	'vimwiki/vimwiki';
-    'catppuccin/nvim';
+    'navarasu/onedark.nvim';
 	'nvim-lua/popup.nvim';
 	'nvim-lua/plenary.nvim';
 	'NeogitOrg/neogit',
 	'nvim-telescope/telescope.nvim';
 	'junegunn/fzf';
 	'junegunn/fzf.vim';
-    	"folke/zen-mode.nvim";
+    "folke/zen-mode.nvim";
     { 'VonHeikemen/lsp-zero.nvim',
         branch = 'v3.x',
         requires = {
@@ -48,6 +48,7 @@ neogit.setup {}
 local async = require('plenary.async')
 require('telescope').setup{
     defaults = {
+        layout_strategy = "vertical",
         file_ignore_patterns = { "__pycache__" }
     }
 }
@@ -71,7 +72,7 @@ require('mason-lspconfig').setup({
 -- Settings
 --
 
-vim.opt.background = "light"
+vim.opt.background = "dark"
 vim.opt.backspace = "indent,eol,start"
 vim.opt.wildmode = "list:longest"
 vim.opt.wildmenu = true
@@ -94,7 +95,7 @@ vim.opt.clipboard = "unnamedplus"
 vim.opt.history = 100
 
 -- Format options
-vim.cmd.colorscheme "catppuccin-latte"
+vim.cmd.colorscheme "onedark"
 vim.opt.ff = "unix"
 vim.opt.cursorline = true
 vim.opt.termguicolors = true

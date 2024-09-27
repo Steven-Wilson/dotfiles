@@ -16,8 +16,8 @@ mod = "mod4"
 
 group_names = [
     " 1 - Web ",
-    " 2 - Editor ",
-    " 3 - Services ",
+    " 2 - API ",
+    " 3 - Mobile ",
     " 4 - Git ",
     " 5 ",
     " 6 ",
@@ -32,14 +32,17 @@ groups = [Group(name) for name in group_names]
 keys = [
 
     # Changing Focus on Windows
-    Key([mod], "h", lazy.prev_screen()),
-    Key([mod], "l", lazy.next_screen()),
+    Key([mod], "h", lazy.layout.previous()),
+    Key([mod], "l", lazy.layout.next()),
     Key([mod], "j", lazy.layout.down()),
     Key([mod], "k", lazy.layout.up()),
 
+    Key([mod], "o", lazy.layout.add()),
+    Key([mod, "shift"], "o", lazy.layout.delete()),
+
     # Moving Windows Around
-    Key([mod, "shift"], "h", lazy.layout.shuffle_left()),
-    Key([mod, "shift"], "l", lazy.layout.shuffle_right()),
+    Key([mod, "shift"], "h", lazy.layout.client_to_previous()),
+    Key([mod, "shift"], "l", lazy.layout.client_to_next()),
     Key([mod, "shift"], "j", lazy.layout.shuffle_down()),
     Key([mod, "shift"], "k", lazy.layout.shuffle_up()),
     Key([mod], "space", lazy.layout.swap_main()),
@@ -58,28 +61,28 @@ keys = [
     Key([mod, "shift"], "e", lazy.shutdown()),
 
     # Changing Group
-    Key([mod], "1", lazy.group[group_names[0]].toscreen(toggle=True)),
-    Key([mod], "2", lazy.group[group_names[1]].toscreen(toggle=True)),
-    Key([mod], "3", lazy.group[group_names[2]].toscreen(toggle=True)),
-    Key([mod], "4", lazy.group[group_names[3]].toscreen(toggle=True)),
-    Key([mod], "5", lazy.group[group_names[4]].toscreen(toggle=True)),
-    Key([mod], "6", lazy.group[group_names[5]].toscreen(toggle=True)),
-    Key([mod], "7", lazy.group[group_names[6]].toscreen(toggle=True)),
-    Key([mod], "8", lazy.group[group_names[7]].toscreen(toggle=True)),
-    Key([mod], "9", lazy.group[group_names[8]].toscreen(toggle=True)),
-    Key([mod], "0", lazy.group[group_names[9]].toscreen(toggle=True)),
+    Key([mod], "1", lazy.group[group_names[0]].toscreen(toggle=False)),
+    Key([mod], "2", lazy.group[group_names[1]].toscreen(toggle=False)),
+    Key([mod], "3", lazy.group[group_names[2]].toscreen(toggle=False)),
+    Key([mod], "4", lazy.group[group_names[3]].toscreen(toggle=False)),
+    Key([mod], "5", lazy.group[group_names[4]].toscreen(toggle=False)),
+    Key([mod], "6", lazy.group[group_names[5]].toscreen(toggle=False)),
+    Key([mod], "7", lazy.group[group_names[6]].toscreen(toggle=False)),
+    Key([mod], "8", lazy.group[group_names[7]].toscreen(toggle=False)),
+    Key([mod], "9", lazy.group[group_names[8]].toscreen(toggle=False)),
+    Key([mod], "0", lazy.group[group_names[9]].toscreen(toggle=False)),
 
     # Moving window to Group
-    Key([mod, "shift"], "1", lazy.window.togroup(group_names[0], switch_group=False)),
-    Key([mod, "shift"], "2", lazy.window.togroup(group_names[1], switch_group=False)),
-    Key([mod, "shift"], "3", lazy.window.togroup(group_names[2], switch_group=False)),
-    Key([mod, "shift"], "4", lazy.window.togroup(group_names[3], switch_group=False)),
-    Key([mod, "shift"], "5", lazy.window.togroup(group_names[4], switch_group=False)),
-    Key([mod, "shift"], "6", lazy.window.togroup(group_names[5], switch_group=False)),
-    Key([mod, "shift"], "7", lazy.window.togroup(group_names[6], switch_group=False)),
-    Key([mod, "shift"], "8", lazy.window.togroup(group_names[7], switch_group=False)),
-    Key([mod, "shift"], "9", lazy.window.togroup(group_names[8], switch_group=False)),
-    Key([mod, "shift"], "0", lazy.window.togroup(group_names[9], switch_group=False)),
+    Key([mod, "shift"], "1", lazy.window.togroup(group_names[0], switch_group=True)),
+    Key([mod, "shift"], "2", lazy.window.togroup(group_names[1], switch_group=True)),
+    Key([mod, "shift"], "3", lazy.window.togroup(group_names[2], switch_group=True)),
+    Key([mod, "shift"], "4", lazy.window.togroup(group_names[3], switch_group=True)),
+    Key([mod, "shift"], "5", lazy.window.togroup(group_names[4], switch_group=True)),
+    Key([mod, "shift"], "6", lazy.window.togroup(group_names[5], switch_group=True)),
+    Key([mod, "shift"], "7", lazy.window.togroup(group_names[6], switch_group=True)),
+    Key([mod, "shift"], "8", lazy.window.togroup(group_names[7], switch_group=True)),
+    Key([mod, "shift"], "9", lazy.window.togroup(group_names[8], switch_group=True)),
+    Key([mod, "shift"], "0", lazy.window.togroup(group_names[9], switch_group=True)),
 
     Key([mod], "Return", lazy.spawn("xfce4-terminal -e zsh")),
     Key([mod, "shift"], "Return", lazy.spawn('xfce4-terminal -e "/home/quikli/venv/bin/python -m bash"')),
@@ -107,19 +110,13 @@ error_color = "#E06C75"
 
 
 layouts = [
-    layout.Max(),
-    layout.MonadThreeCol(
+    layout.Stack(
         border_focus=accent_color,
         border_normal=fg_color,
         margin=9,
-        border_width=3
-    ),
-    layout.MonadTall(
-        border_focus=accent_color,
-        border_normal=fg_color,
-        margin=9,
-        border_width=3
-    ),
+        border_width=3,
+        num_stacks=2,
+    )
 ]
 
 
