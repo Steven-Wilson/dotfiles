@@ -93,7 +93,7 @@ keys = [
     Key([mod], "g", lazy.spawn("rofi -modi window -show window")),
 
     Key([mod], "e", lazy.spawn("nautilus")),
-    Key([mod], "w", lazy.spawn("google-chrome")),
+    Key([mod], "w", lazy.spawn("firefox")),
 
 ]
 
@@ -110,13 +110,24 @@ error_color = "#E06C75"
 
 
 layouts = [
+    layout.MonadThreeCol(
+        border_focus=accent_color,
+        border_normal=fg_color,
+        margin=9,
+        border_width=3,
+    ),
     layout.Stack(
         border_focus=accent_color,
         border_normal=fg_color,
         margin=9,
         border_width=3,
         num_stacks=2,
-    )
+    ),
+    layout.Floating(
+        border_focus=accent_color,
+        border_normal=fg_color,
+        border_width=3,
+    ),
 ]
 
 
@@ -189,8 +200,9 @@ floating_layout = layout.Floating(
         Match(title='branchdialog'),  # gitk
         Match(title='pinentry'),  # GPG key password entry
     ],
-    border_focus=good_color,
+    border_focus=accent_color,
     border_normal=fg_color,
+    border_width=3,
 )
 
 auto_fullscreen = True
