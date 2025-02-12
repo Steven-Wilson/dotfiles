@@ -6,7 +6,7 @@ from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 
 
-@hook.subscribe.startup_once
+@hook.subscribe.startup
 def autostart():
     startup_script = os.path.expanduser('~/.local/bin/autostart')
     subprocess.Popen([startup_script])
@@ -73,19 +73,18 @@ keys = [
     Key([mod], "0", lazy.group[group_names[9]].toscreen(toggle=False)),
 
     # Moving window to Group
-    Key([mod, "shift"], "1", lazy.window.togroup(group_names[0], switch_group=True)),
-    Key([mod, "shift"], "2", lazy.window.togroup(group_names[1], switch_group=True)),
-    Key([mod, "shift"], "3", lazy.window.togroup(group_names[2], switch_group=True)),
-    Key([mod, "shift"], "4", lazy.window.togroup(group_names[3], switch_group=True)),
-    Key([mod, "shift"], "5", lazy.window.togroup(group_names[4], switch_group=True)),
-    Key([mod, "shift"], "6", lazy.window.togroup(group_names[5], switch_group=True)),
-    Key([mod, "shift"], "7", lazy.window.togroup(group_names[6], switch_group=True)),
-    Key([mod, "shift"], "8", lazy.window.togroup(group_names[7], switch_group=True)),
-    Key([mod, "shift"], "9", lazy.window.togroup(group_names[8], switch_group=True)),
-    Key([mod, "shift"], "0", lazy.window.togroup(group_names[9], switch_group=True)),
+    Key([mod, "shift"], "1", lazy.window.togroup(group_names[0], switch_group=False)),
+    Key([mod, "shift"], "2", lazy.window.togroup(group_names[1], switch_group=False)),
+    Key([mod, "shift"], "3", lazy.window.togroup(group_names[2], switch_group=False)),
+    Key([mod, "shift"], "4", lazy.window.togroup(group_names[3], switch_group=False)),
+    Key([mod, "shift"], "5", lazy.window.togroup(group_names[4], switch_group=False)),
+    Key([mod, "shift"], "6", lazy.window.togroup(group_names[5], switch_group=False)),
+    Key([mod, "shift"], "7", lazy.window.togroup(group_names[6], switch_group=False)),
+    Key([mod, "shift"], "8", lazy.window.togroup(group_names[7], switch_group=False)),
+    Key([mod, "shift"], "9", lazy.window.togroup(group_names[8], switch_group=False)),
+    Key([mod, "shift"], "0", lazy.window.togroup(group_names[9], switch_group=False)),
 
     Key([mod], "Return", lazy.spawn("xfce4-terminal -e zsh")),
-    Key([mod, "shift"], "Return", lazy.spawn('xfce4-terminal -e "/home/quikli/venv/bin/python -m bash"')),
     Key([mod], "p", lazy.spawn('flameshot gui')),
 
     Key([mod], "d", lazy.spawn("rofi -modi drun -show drun")),
@@ -110,18 +109,11 @@ error_color = "#E06C75"
 
 
 layouts = [
-    layout.MonadThreeCol(
+    layout.MonadTall(
         border_focus=accent_color,
         border_normal=fg_color,
-        margin=9,
+        margin=18,
         border_width=3,
-    ),
-    layout.Stack(
-        border_focus=accent_color,
-        border_normal=fg_color,
-        margin=9,
-        border_width=3,
-        num_stacks=2,
     ),
     layout.Floating(
         border_focus=accent_color,

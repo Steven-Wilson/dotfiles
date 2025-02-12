@@ -24,11 +24,9 @@ require('pckr').add{
     'navarasu/onedark.nvim';
 	'nvim-lua/popup.nvim';
 	'nvim-lua/plenary.nvim';
-	'NeogitOrg/neogit',
 	'nvim-telescope/telescope.nvim';
 	'junegunn/fzf';
 	'junegunn/fzf.vim';
-    "folke/zen-mode.nvim";
     { 'VonHeikemen/lsp-zero.nvim',
         branch = 'v3.x',
         requires = {
@@ -41,9 +39,6 @@ require('pckr').add{
         }
     };
 }
-
-local neogit = require('neogit')
-neogit.setup {}
 
 local async = require('plenary.async')
 require('telescope').setup{
@@ -179,11 +174,32 @@ vim.keymap.set("n", "<A-j>", "<cmd>wincmd j<CR>")
 vim.keymap.set("n", "<A-k>", "<cmd>wincmd k<CR>")
 vim.keymap.set("n", "<A-l>", "<cmd>wincmd l<CR>")
 
--- Neogit
-vim.keymap.set("n", "<leader>gg", "<cmd>Neogit<cr>")
+-- Work with quick fix
+vim.keymap.set("n", "<C-j>", "<cmd>cnext<CR>")
+vim.keymap.set("n", "<C-k>", "<cmd>cprev<CR>")
 
 -- Fuzzy Find
 vim.keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>")
 vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>")
 vim.keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<cr>")
 vim.keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>")
+vim.keymap.set("n", "<leader>k", "<cmd>lua vim.diagnostic.open_float()<CR>")
+
+-- Vimwiki
+vim.keymap.set("n", "<leader>ww", "<cmd>VimwikiIndex<CR>")
+
+
+vim.vimwiki_list = {
+    {
+        path = "~/vimwiki/",
+        syntax = "markdown",
+        ext = "md",
+    };
+}
+
+-- Diagnostic settings
+vim.diagnostic.config {
+  virtual_text = false,
+  signs = true,
+  underline = false,
+}
