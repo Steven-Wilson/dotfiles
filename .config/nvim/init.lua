@@ -20,25 +20,16 @@ vim.opt.rtp:prepend(pckr_path)
 --
 
 require('pckr').add{
-	'vimwiki/vimwiki';
-    'navarasu/onedark.nvim';
-	'nvim-lua/popup.nvim';
+  'vimwiki/vimwiki';
+  'navarasu/onedark.nvim';
+  'nvim-lua/popup.nvim';
 	'nvim-lua/plenary.nvim';
 	'nvim-telescope/telescope.nvim';
 	'junegunn/fzf';
 	'junegunn/fzf.vim';
-    { 'VonHeikemen/lsp-zero.nvim',
-        branch = 'v3.x',
-        requires = {
-            {'williamboman/mason.nvim'},
-            {'williamboman/mason-lspconfig.nvim'},
-            {'neovim/nvim-lspconfig'},
-            {'hrsh7th/nvim-cmp'},
-            {'hrsh7th/cmp-nvim-lsp'},
-            {'L3MON4D3/LuaSnip'},
-        }
-    };
+  'github/copilot.vim';
 }
+
 
 local async = require('plenary.async')
 require('telescope').setup{
@@ -48,20 +39,20 @@ require('telescope').setup{
     }
 }
 
-local lsp_zero = require('lsp-zero')
-lsp_zero.on_attach(function(client, bufnr)
-    lsp_zero.default_keymaps({buffer = bufnr})
-end)
+-- local lsp_zero = require('lsp-zero')
+-- lsp_zero.on_attach(function(client, bufnr)
+    -- lsp_zero.default_keymaps({buffer = bufnr})
+-- end)
 
-require('mason').setup({})
-require('mason-lspconfig').setup({
-    ensure_installed = {},
-    handlers = {
-        function(server_name)
-            require('lspconfig')[server_name].setup({})
-        end,
-    },
-})
+-- require('mason').setup({})
+-- require('mason-lspconfig').setup({
+    -- ensure_installed = {},
+    -- handlers = {
+        -- function(server_name)
+            -- require('lspconfig')[server_name].setup({})
+        -- end,
+    -- },
+-- })
 
 --
 -- Settings
@@ -102,14 +93,14 @@ vim.opt.showbreak = "|"
 vim.opt.sidescroll = 1
 vim.opt.sidescrolloff = 10
 vim.opt.textwidth = 0
-vim.opt.wrap = false
-vim.opt.wrapmargin = 0
+vim.opt.wrap = true
+vim.opt.wrapmargin = 3
 
 -- Indent
 vim.opt.expandtab = true
-vim.opt.shiftwidth = 4
-vim.opt.softtabstop = 4
-vim.opt.tabstop = 4
+vim.opt.shiftwidth = 2
+vim.opt.softtabstop = 2
+vim.opt.tabstop = 2
 vim.opt.smartindent = true
 vim.opt.smarttab = true
 vim.opt.autoindent = true

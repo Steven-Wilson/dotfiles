@@ -13,87 +13,81 @@ def autostart():
 
 
 mod = "mod4"
+groups = []
 
-group_names = [
-    " 1 - Web ",
-    " 2 - API ",
-    " 3 - Mobile ",
-    " 4 - Git ",
-    " 5 ",
-    " 6 ",
-    " 7 ",
-    " 8 - Slack ",
-    " 9 - 1Pass ",
-    " 0 - Terminal ",
-]
-
-groups = [Group(name) for name in group_names]
-
-keys = [
-
-    # Changing Focus on Windows
-    Key([mod], "h", lazy.layout.previous()),
-    Key([mod], "l", lazy.layout.next()),
-    Key([mod], "j", lazy.layout.down()),
-    Key([mod], "k", lazy.layout.up()),
-
-    Key([mod], "o", lazy.layout.add()),
-    Key([mod, "shift"], "o", lazy.layout.delete()),
-
-    # Moving Windows Around
-    Key([mod, "shift"], "h", lazy.layout.client_to_previous()),
-    Key([mod, "shift"], "l", lazy.layout.client_to_next()),
-    Key([mod, "shift"], "j", lazy.layout.shuffle_down()),
-    Key([mod, "shift"], "k", lazy.layout.shuffle_up()),
-    Key([mod], "space", lazy.layout.swap_main()),
-
-    # Resizing
-    Key([mod], "minus", lazy.layout.decrease_ratio()),
-    Key([mod], "equal", lazy.layout.increase_ratio()),
-
-    # Layouts
+cmd_keys = [
+    Key(["mod1"], "Tab", lazy.layout.next()),
     Key([mod], "Tab", lazy.next_layout()),
-    Key([mod, "shift"], "space", lazy.window.toggle_floating()),
-    Key([mod], "f", lazy.window.toggle_fullscreen()),
-
     Key([mod, "shift"], "q", lazy.window.kill()),
     Key([mod, "shift"], "r", lazy.restart()),
     Key([mod, "shift"], "e", lazy.shutdown()),
+]
+nav_keys = []
+move_keys = []
+app_keys = []
 
-    # Changing Group
-    Key([mod], "1", lazy.group[group_names[0]].toscreen(toggle=False)),
-    Key([mod], "2", lazy.group[group_names[1]].toscreen(toggle=False)),
-    Key([mod], "3", lazy.group[group_names[2]].toscreen(toggle=False)),
-    Key([mod], "4", lazy.group[group_names[3]].toscreen(toggle=False)),
-    Key([mod], "5", lazy.group[group_names[4]].toscreen(toggle=False)),
-    Key([mod], "6", lazy.group[group_names[5]].toscreen(toggle=False)),
-    Key([mod], "7", lazy.group[group_names[6]].toscreen(toggle=False)),
-    Key([mod], "8", lazy.group[group_names[7]].toscreen(toggle=False)),
-    Key([mod], "9", lazy.group[group_names[8]].toscreen(toggle=False)),
-    Key([mod], "0", lazy.group[group_names[9]].toscreen(toggle=False)),
 
-    # Moving window to Group
-    Key([mod, "shift"], "1", lazy.window.togroup(group_names[0], switch_group=False)),
-    Key([mod, "shift"], "2", lazy.window.togroup(group_names[1], switch_group=False)),
-    Key([mod, "shift"], "3", lazy.window.togroup(group_names[2], switch_group=False)),
-    Key([mod, "shift"], "4", lazy.window.togroup(group_names[3], switch_group=False)),
-    Key([mod, "shift"], "5", lazy.window.togroup(group_names[4], switch_group=False)),
-    Key([mod, "shift"], "6", lazy.window.togroup(group_names[5], switch_group=False)),
-    Key([mod, "shift"], "7", lazy.window.togroup(group_names[6], switch_group=False)),
-    Key([mod, "shift"], "8", lazy.window.togroup(group_names[7], switch_group=False)),
-    Key([mod, "shift"], "9", lazy.window.togroup(group_names[8], switch_group=False)),
-    Key([mod, "shift"], "0", lazy.window.togroup(group_names[9], switch_group=False)),
+def make_workspace(name, key):
+    global groups
+    global nav_keys
+    global move_keys
 
-    Key([mod], "Return", lazy.spawn("xfce4-terminal -e zsh")),
-    Key([mod], "p", lazy.spawn('flameshot gui')),
+    # Declare the group
+    groups.append(Group(name))
 
-    Key([mod], "d", lazy.spawn("rofi -modi drun -show drun")),
-    Key([mod, "shift"], "d", lazy.spawn("rofi -modi run -show run")),
-    Key([mod], "g", lazy.spawn("rofi -modi window -show window")),
+    # Keybind to switch to/from the group
+    nav_keys.append(Key([mod], key, lazy.group[name].toscreen(toggle=True)))
 
-    Key([mod], "e", lazy.spawn("nautilus")),
-    Key([mod], "w", lazy.spawn("firefox")),
+    # Keybind to move a window to a group
+    move_keys.append(Key([mod, "shift"], key, lazy.window.togroup(name, switch_group=False)))
 
+
+def make_launcher(app, key):
+    global app_keys
+    app_keys.append(Key([mod], key, lazy.spawn(app)))
+
+
+# make_launcher("zen", "w")
+# make_launcher("cursor", "e")
+make_launcher("flameshot gui", "f")
+# make_launcher("nautilus", "f")
+make_launcher("rofi -modi drun -show drun", "space")
+make_launcher("rofi -modi run -show run", "r")
+make_launcher("rofi -modi window -show window", "l")
+make_launcher("xfce4-terminal -e zsh", "Return")
+
+
+# Named Workspaces
+make_workspace("1", "1")
+make_workspace("2", "2")
+make_workspace("3", "3")
+make_workspace("4", "4")
+make_workspace("5", "5")
+make_workspace("6", "6")
+make_workspace("7", "7")
+make_workspace("8", "8")
+make_workspace("9", "9")
+make_workspace("0", "0")
+
+# Named workspaces
+make_workspace("Web", "w")
+make_workspace("Editor", "e")
+make_workspace("Yarn", "y")
+make_workspace("CAPN", "c")
+make_workspace("Mobile", "m")
+make_workspace("Emulator", "u")
+make_workspace("Spotify", "o")
+make_workspace("Git", "g")
+make_workspace("Slack", "s")
+make_workspace("Password", "p")
+make_workspace("Terminal", "t")
+
+
+keys = [
+    *cmd_keys,
+    *app_keys,
+    *nav_keys,
+    *move_keys,
 ]
 
 
@@ -109,16 +103,17 @@ error_color = "#E06C75"
 
 
 layouts = [
+    layout.Max(
+        border_focus=accent_color,
+        border_normal=fg_color,
+        margin=9,
+        border_width=0,
+    ),
     layout.MonadTall(
         border_focus=accent_color,
         border_normal=fg_color,
-        margin=18,
-        border_width=3,
-    ),
-    layout.Floating(
-        border_focus=accent_color,
-        border_normal=fg_color,
-        border_width=3,
+        margin=9,
+        border_width=2,
     ),
 ]
 
@@ -157,16 +152,17 @@ screens = [
                     name_transform=lambda name: name.upper(),
                 ),
                 widget.CurrentLayout(foreground=good_color),
+                widget.MemoryGraph(),
                 widget.Systray(),
                 widget.Clock(
-                    format='%Y-%m-%d %a %I:%M %p',
+                    format='  %a %-m/%-m %-I:%M %p  ',
                     foreground=fg_color,
                 ),
             ],
             24,
             background=bg_color,
         ),
-    ),
+    )
 ]
 
 # Drag floating layouts.
