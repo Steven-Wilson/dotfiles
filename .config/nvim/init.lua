@@ -82,6 +82,20 @@ vim.opt.history = 100
 
 -- Format options
 vim.cmd.colorscheme "onedark"
+-- transparent background
+vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
+vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'none' })
+vim.api.nvim_set_hl(0, 'FloatBorder', { bg = 'none' })
+vim.api.nvim_set_hl(0, 'Pmenu', { bg = 'none' })
+
+require("onedark").setup({
+  transparent = true,
+  styles = {
+    sidebars = "transparent",
+    floats = "transparent",
+  },
+})
+
 vim.opt.ff = "unix"
 vim.opt.cursorline = true
 vim.opt.termguicolors = true

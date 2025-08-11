@@ -33,7 +33,7 @@ ColorBold=#6161afafefef
 ColorBackground=#11a91374170a
 ColorForeground=#ababb2b2bfbf
 TabActivityColor=#e5e5c0c07b7b
-FontName=Iosevka Nerd Font 13
+FontName=Iosevka Nerd Font Mono Semi-Bold 12
 BackgroundDarkness=0.850000
 MiscRightClickAction=TERMINAL_RIGHT_CLICK_ACTION_CONTEXT_MENU
 ScrollingUnlimited=TRUE
@@ -46,4 +46,5 @@ BackgroundMode=TERMINAL_BACKGROUND_TRANSPARENT
 BackgroundImageFile=/home/swilson/Pictures/Home_Hero-1-3286x1400.jpg
 BackgroundImageShading=0.750000
 BackgroundImageStyle=TERMINAL_BACKGROUND_STYLE_SCALED
+FontAllowBold=FALSE
 

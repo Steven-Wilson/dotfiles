@@ -21,6 +21,25 @@ cmd_keys = [
     Key([mod, "shift"], "q", lazy.window.kill()),
     Key([mod, "shift"], "r", lazy.restart()),
     Key([mod, "shift"], "e", lazy.shutdown()),
+
+    Key([mod], "h", lazy.layout.left()),
+    Key([mod], "j", lazy.layout.down()),
+    Key([mod], "k", lazy.layout.up()),
+    Key([mod], "l", lazy.layout.right()),
+
+    Key([mod, "shift"], "h", lazy.layout.swap_left()),
+    Key([mod, "shift"], "j", lazy.layout.shuffle_down()),
+    Key([mod, "shift"], "k", lazy.layout.shuffle_up()),
+    Key([mod, "shift"], "l", lazy.layout.swap_right()),
+
+    Key([mod], "minus", lazy.layout.shrink_main()),
+    Key([mod], "equal", lazy.layout.grow_main()),
+    Key([mod], "0", lazy.layout.reset()),
+    Key([mod], "m", lazy.window.toggle_fullscreen()),
+
+    Key([mod], "space", lazy.layout.swap_main()),
+    Key([mod, "shift"], "space", lazy.window.toggle_floating()),
+
 ]
 nav_keys = []
 move_keys = []
@@ -47,40 +66,25 @@ def make_launcher(app, key):
     app_keys.append(Key([mod], key, lazy.spawn(app)))
 
 
-# make_launcher("zen", "w")
-# make_launcher("cursor", "e")
-make_launcher("flameshot gui", "f")
-# make_launcher("nautilus", "f")
-make_launcher("rofi -modi drun -show drun", "space")
+make_launcher("firefox", "w")
+make_launcher("flameshot gui", "p")
+make_launcher("nautilus", "e")
+make_launcher("rofi -modi drun -show drun", "d")
 make_launcher("rofi -modi run -show run", "r")
-make_launcher("rofi -modi window -show window", "l")
+make_launcher("rofi -modi window -show window", "g")
 make_launcher("xfce4-terminal -e zsh", "Return")
 
 
-# Named Workspaces
-make_workspace("1", "1")
-make_workspace("2", "2")
-make_workspace("3", "3")
-make_workspace("4", "4")
-make_workspace("5", "5")
-make_workspace("6", "6")
-make_workspace("7", "7")
-make_workspace("8", "8")
-make_workspace("9", "9")
-make_workspace("0", "0")
-
 # Named workspaces
-make_workspace("Web", "w")
-make_workspace("Editor", "e")
-make_workspace("Yarn", "y")
-make_workspace("CAPN", "c")
-make_workspace("Mobile", "m")
-make_workspace("Emulator", "u")
-make_workspace("Spotify", "o")
-make_workspace("Git", "g")
-make_workspace("Slack", "s")
-make_workspace("Password", "p")
-make_workspace("Terminal", "t")
+make_workspace("Web", "1")
+make_workspace("Editor", "2")
+make_workspace("Services", "3")
+make_workspace("Git", "4")
+make_workspace("Misc. 1", "5")
+make_workspace("Misc. 2", "6")
+make_workspace("Spotify", "7")
+make_workspace("Slack", "8")
+make_workspace("Password", "9")
 
 
 keys = [
@@ -103,17 +107,13 @@ error_color = "#E06C75"
 
 
 layouts = [
-    layout.Max(
-        border_focus=accent_color,
-        border_normal=fg_color,
-        margin=9,
-        border_width=0,
-    ),
     layout.MonadTall(
         border_focus=accent_color,
         border_normal=fg_color,
         margin=9,
         border_width=2,
+        ratio=0.6,
+        new_client_position="top",
     ),
 ]
 
@@ -155,7 +155,7 @@ screens = [
                 widget.MemoryGraph(),
                 widget.Systray(),
                 widget.Clock(
-                    format='  %a %-m/%-m %-I:%M %p  ',
+                    format='  %a %-m/%-d %-I:%M %p  ',
                     foreground=fg_color,
                 ),
             ],

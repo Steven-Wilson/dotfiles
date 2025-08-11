@@ -6,24 +6,23 @@ font pango:monospace 12
 default_border pixel 1
 default_floating_border pixel 0
 
-# Force everything to be fullscreen
-# workspace_layout tabbed
+workspace_layout tabbed
 
 
 set $mainmon DP-3
-set $sidemon HDMI-0
 
 # Workspaces
 
-workspace "browser" output $mainmon
-workspace "cursor" output $mainmon
-workspace "files" output $mainmon
-workspace "zoom/huddle meeting" output $mainmon
-workspace "lazygit" output $mainmon
-
-workspace "slack" output $sidemon
-workspace "1password" output $sidemon
-workspace "background" output $sidemon
+workspace "1" output $mainmon
+workspace "2" output $mainmon
+workspace "3" output $mainmon
+workspace "4" output $mainmon
+workspace "5" output $mainmon
+workspace "6" output $mainmon
+workspace "7" output $mainmon
+workspace "8" output $mainmon
+workspace "9" output $mainmon
+workspace "10" output $mainmon
 
 # Rules
 
@@ -35,15 +34,20 @@ for_window [class="zoom" title="Zoom Meeting"] floating disable
 
 # assign [class="Slack"] "slack"
 # assign [class="1Password"] "1password"
-# assign [class="Brave-browser"] "browser"
+# assign [class="firefox"] "browser"
 # assign [class="Cursor"] "cursor"
 # assign [class="Zoom"] "zoom/huddle meeting"
 
-bindsym $mod+1 exec go-to-index 0
-bindsym $mod+2 exec go-to-index 1
-bindsym $mod+3 exec go-to-index 2
-bindsym $mod+4 exec go-to-index 3
-bindsym $mod+5 exec go-to-index 4
+bindsym $mod+1 workspace "1"
+bindsym $mod+2 workspace "2"
+bindsym $mod+3 workspace "3"
+bindsym $mod+4 workspace "4"
+bindsym $mod+5 workspace "5"
+bindsym $mod+6 workspace "6"
+bindsym $mod+7 workspace "7"
+bindsym $mod+8 workspace "8"
+bindsym $mod+9 workspace "9"
+bindsym $mod+0 workspace "10"
 
 # Keybindings
 
@@ -51,24 +55,19 @@ bindsym $mod+5 exec go-to-index 4
 bindsym $mod+Shift+r restart
 bindsym $mod+Shift+q kill
 
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
+bindsym $mod+Shift+Tab workspace prev_on_output
+bindsym $mod+Tab workspace next_on_output
+bindsym $mod+h focus prev
+bindsym $mod+l focus next
 
 bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
-
 
 bindsym $mod+Right split h
 bindsym $mod+Down split v
 
 bindsym $mod+f fullscreen toggle
 
-bindsym $mod+Tab workspace next_on_output
-bindsym $mod+Shift+Tab workspace prev_on_output
 bindsym $mod+space exec go-to-workspace
 bindsym $mod+Shift+space exec send-to-workspace
 
@@ -80,7 +79,7 @@ bindsym $mod+d exec rofi -modi drun -show drun
 bindsym $mod+e exec nautilus
 bindsym $mod+g exec rofi -modi window -show window
 bindsym $mod+p exec flameshot gui
-bindsym $mod+w exec brave-browser
+bindsym $mod+w exec firefox
 
 # Colors
 
@@ -126,4 +125,4 @@ bar {
 }
 
 exec_always --no-startup-id /home/swilson/.local/bin/autostart
-exec_always --no-startup-id /home/swilson/.screenlayout/i3-2-monitor.sh
+#exec_always --no-startup-id /home/swilson/.screenlayout/i3-2-monitor.sh
